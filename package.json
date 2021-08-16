@@ -2,24 +2,24 @@
   "name": "vision-camera-qrcode-scanner",
   "version": "0.1.0",
   "description": "VisionCamera Frame Processor Plugin to read barcodes using MLKit Vision Barcode Scanning",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
-  "react-native": "src/index",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/src/index.d.ts",
+  "react-native": "src/index.tsx",
   "source": "src/index",
   "files": [
     "src",
     "lib",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
     "android",
     "ios",
     "cpp",
     "vision-camera-qrcode-scanner.podspec",
     "!lib/typescript/example",
     "!android/build",
-    "!ios/build",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__"
+    "!ios/build"
   ],
   "scripts": {
     "test": "jest",
@@ -63,13 +63,14 @@
     "prettier": "^2.0.5",
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-builder-bob": "^0.18.0",
+    "react-native-builder-bob": "^0.18.1",
     "release-it": "^14.2.2",
     "typescript": "^4.1.3"
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-vision-camera": ">=2.0.0"
   },
   "jest": {
     "preset": "react-native",
@@ -142,12 +143,7 @@
     "targets": [
       "commonjs",
       "module",
-      [
-        "typescript",
-        {
-          "project": "tsconfig.build.json"
-        }
-      ]
+      "typescript"
     ]
   }
 }

@@ -6,7 +6,7 @@ buildscript {
         }
 
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.5.3'
+            classpath 'com.android.tools.build:gradle:4.2.1'
         }
     }
 }
@@ -18,11 +18,11 @@ def safeExtGet(prop, fallback) {
 }
 
 android {
-    compileSdkVersion safeExtGet('VisionCameraQrcodeScanner_compileSdkVersion', 29)
-    buildToolsVersion safeExtGet('VisionCameraQrcodeScanner_buildToolsVersion', '29.0.2')
+    compileSdkVersion safeExtGet('VisionCameraQrcodeScanner_compileSdkVersion', 30)
+    buildToolsVersion safeExtGet('VisionCameraQrcodeScanner_buildToolsVersion', '30.0.1')
     defaultConfig {
-        minSdkVersion safeExtGet('VisionCameraQrcodeScanner_minSdkVersion', 16)
-        targetSdkVersion safeExtGet('VisionCameraQrcodeScanner_targetSdkVersion', 29)
+        minSdkVersion safeExtGet('VisionCameraQrcodeScanner_minSdkVersion', 21)
+        targetSdkVersion safeExtGet('VisionCameraQrcodeScanner_targetSdkVersion', 31)
         versionCode 1
         versionName "1.0"
 
@@ -55,4 +55,6 @@ repositories {
 dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    api project(":react-native-vision-camera")
+    implementation "androidx.camera:camera-core:1.1.0-alpha06"
 }
