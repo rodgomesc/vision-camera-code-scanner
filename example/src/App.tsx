@@ -1,31 +1,41 @@
 import * as React from 'react';
+import 'react-native-reanimated';
 
-import { StyleSheet, View, Text } from 'react-native';
-import VisionCameraQrcodeScanner from 'vision-camera-qrcode-scanner';
+import { StyleSheet } from 'react-native';
+import {
+  useCameraDevices,
+  useFrameProcessor,
+} from 'react-native-vision-camera';
+import { Camera } from 'react-native-vision-camera';
+import { scanQRCodes } from 'vision-camera-qrcode-scanner';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [hasPermission, setHasPermission] = React.useState(false);
+  const devices = useCameraDevices();
+  const device = devices.back;
 
   React.useEffect(() => {
-    VisionCameraQrcodeScanner.multiply(3, 7).then(setResult);
+    (async () => {
+      const status = await Camera.requestCameraPermission();
+      setHasPermission(status === 'authorized');
+    })();
+  }, []);
+
+  const frameProcessor = useFrameProcessor((frame) => {
+    'worklet';
+    const qrcode = scanQRCodes(frame);
+    console.log(qrcode);
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    device != null &&
+    hasPermission && (
+      <Camera
+        style={StyleSheet.absoluteFill}
+        device={device}
+        isActive={true}
+        frameProcessor={frameProcessor}
+      />
+    )
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
