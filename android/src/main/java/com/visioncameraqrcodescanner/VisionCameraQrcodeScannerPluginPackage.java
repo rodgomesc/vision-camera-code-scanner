@@ -1,6 +1,7 @@
 package com.visioncameraqrcodescanner;
 
 
+
 import javax.annotation.Nonnull;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
@@ -8,6 +9,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
 
+import java.util.List;
 
 public class VisionCameraQrcodeScannerPluginPackage implements ReactPackage {
   @NonNull
@@ -17,9 +19,9 @@ public class VisionCameraQrcodeScannerPluginPackage implements ReactPackage {
     return Collections.emptyList();
   }
 
-  @Nonnull
+  @NonNull
   @Override
-  public List<ViewManager> createViewManagers(@Nonnull ReactApplicationContext reactContext) {
+  public List<ViewManager> createViewManagers(@NonNull ReactApplicationContext reactContext) {
     return Collections.emptyList();
   }
 }
