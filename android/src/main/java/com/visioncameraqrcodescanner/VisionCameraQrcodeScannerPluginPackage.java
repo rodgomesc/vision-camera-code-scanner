@@ -1,27 +1,29 @@
 package com.visioncameraqrcodescanner;
 
+import androidx.annotation.NonNull;
 
-
-import javax.annotation.Nonnull;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
 
+import java.util.Collections;
 import java.util.List;
 
 public class VisionCameraQrcodeScannerPluginPackage implements ReactPackage {
   @NonNull
+  @org.jetbrains.annotations.NotNull
   @Override
-  public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
-    FrameProcessorPlugin.register(new QRCodeFrameProcessorPlugin());
+  public List<NativeModule> createNativeModules(@NonNull @org.jetbrains.annotations.NotNull ReactApplicationContext reactContext) {
+    FrameProcessorPlugin.register(new VisionCameraQrcodeScannerPlugin());
     return Collections.emptyList();
   }
 
   @NonNull
+  @org.jetbrains.annotations.NotNull
   @Override
-  public List<ViewManager> createViewManagers(@NonNull ReactApplicationContext reactContext) {
+  public List<ViewManager> createViewManagers(@NonNull @org.jetbrains.annotations.NotNull ReactApplicationContext reactContext) {
     return Collections.emptyList();
   }
 }

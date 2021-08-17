@@ -20,8 +20,7 @@ import com.google.mlkit.vision.common.InputImage;
 
 import java.util.List;
 
-
-public class QRCodeFrameProcessorPlugin extends FrameProcessorPlugin {
+public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
   private final BarcodeScanner barcodeScanner =
     BarcodeScanning.getClient(
       new BarcodeScannerOptions.Builder()
@@ -58,6 +57,7 @@ public class QRCodeFrameProcessorPlugin extends FrameProcessorPlugin {
               map.putString("url",barcode.getUrl().getUrl());
               break;
           }
+          array.pushMap(map);
         }
         return array;
       } catch (Exception e) {
@@ -69,7 +69,7 @@ public class QRCodeFrameProcessorPlugin extends FrameProcessorPlugin {
   }
 
 
-  QRCodeFrameProcessorPlugin() {
+  VisionCameraQrcodeScannerPlugin() {
     super("scanQRCodes");
   }
 }
