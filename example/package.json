@@ -1,7 +1,7 @@
 {
   "name": "vision-camera-qrcode-scanner-example",
   "description": "Example app for vision-camera-qrcode-scanner",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "android": "react-native run-android",

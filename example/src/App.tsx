@@ -25,7 +25,6 @@ export default function App() {
   const frameProcessor = useFrameProcessor((frame) => {
     'worklet';
     const qrcode = scanQRCodes(frame);
-    console.log(qrcode);
     runOnJS(setQrCodes)(qrcode);
   }, []);
 
