@@ -217,7 +217,7 @@ export type QrCode = {
   rawValue?: string;
   content:
     | {
-        type: QrCodeType.UNKNOWN;
+        type: QrCodeType.UNKNOWN | QrCodeType.ISBN | QrCodeType.TEXT;
         data: string;
       }
     | {
@@ -229,20 +229,12 @@ export type QrCode = {
         data: QrCodeEmail;
       }
     | {
-        type: QrCodeType.ISBN;
-        data: string;
-      }
-    | {
         type: QrCodeType.PHONE;
         data: QrCodePhone;
       }
     | {
         type: QrCodeType.SMS;
         data: QrCodeSms;
-      }
-    | {
-        type: QrCodeType.TEXT;
-        data: string;
       }
     | {
         type: QrCodeType.URL;
