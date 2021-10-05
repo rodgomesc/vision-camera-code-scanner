@@ -26,6 +26,7 @@ export default function App() {
     'worklet';
     const qrcode = scanQRCodes(frame);
     runOnJS(setQrCodes)(qrcode);
+    console.log(qrCodes);
   }, []);
 
   return (
@@ -41,7 +42,7 @@ export default function App() {
         />
         {qrCodes.map((qrcode, idx) => (
           <Text key={idx} style={styles.qrCodeTextURL}>
-            {qrcode.url}
+            {qrcode.displayValue}
           </Text>
         ))}
       </>

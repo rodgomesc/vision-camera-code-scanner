@@ -55,7 +55,7 @@ export interface QrCodePersonName {
 export interface QrCodeContactInfo {
   addresses?: QrCodeAddress[];
   emails?: QrCodeEmail[];
-  name?: QrCodePersonName[];
+  name?: QrCodePersonName;
   organization?: string;
   phones?: QrCodePhone[];
   title?: string;
@@ -146,8 +146,13 @@ export interface QrCodeGeoPoint {
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.CalendarDateTime
  */
 export interface QrCodeDate {
-  seconds: number;
+  day: number;
+  hours: number;
+  minutes: number;
+  month: number;
   rawValue: string;
+  seconds: number;
+  year: number;
   isUtc: boolean;
 }
 
@@ -209,6 +214,7 @@ export type QrCode = {
   boundingBox?: Rect;
   cornerPoints?: Point[];
   displayValue?: string;
+  rawValue?: string;
   content:
     | {
         type: QrCodeType.UNKNOWN;
