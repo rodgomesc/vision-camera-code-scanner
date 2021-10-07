@@ -1,7 +1,7 @@
 import MLKitBarcodeScanning
 
 class BarcodeConverter {
-    public static func convertToMap(url: BarcodeURLBookmark) -> Any! {
+    public static func convertToMap(url: BarcodeURLBookmark?) -> Any! {
         var map: [String: Any] = [:]
 
         map["title"] = url?.title
@@ -10,7 +10,7 @@ class BarcodeConverter {
         return map
     }
 
-    public static func convertToMap(wifi: BarcodeWifi) -> Any! {
+    public static func convertToMap(wifi: BarcodeWifi?) -> Any! {
         var map: [String: Any] = [:]
 
         map["encryptionType"] = wifi?.type
@@ -20,7 +20,7 @@ class BarcodeConverter {
         return map
     }
 
-    public static func convertToMap(sms: BarcodeSMS) -> Any! {
+    public static func convertToMap(sms: BarcodeSMS?) -> Any! {
         var map: [String: Any] = [:]
 
         map["message"] = sms?.message
@@ -29,7 +29,7 @@ class BarcodeConverter {
         return map
     }
 
-    public static func convertToMap(phone: BarcodePhone) -> Any! {
+    public static func convertToMap(phone: BarcodePhone?) -> Any! {
         var map: [String: Any] = [:]
 
         map["number"] = phone?.number
@@ -38,7 +38,7 @@ class BarcodeConverter {
         return map
     }
 
-    public static func convertToMap(geoPoint: BarcodeGeoPoint) -> Any! {
+    public static func convertToMap(geoPoint: BarcodeGeoPoint?) -> Any! {
         var map: [String: Any] = [:]
 
         map["lat"] = geoPoint?.latitude
@@ -47,7 +47,7 @@ class BarcodeConverter {
         return map
     }
 
-    public static func convertToMap(email: BarcodeEmail) -> Any! {
+    public static func convertToMap(email: BarcodeEmail?) -> Any! {
         var map: [String: Any] = [:]
 
         map["address"] = email?.address
@@ -58,7 +58,7 @@ class BarcodeConverter {
         return map
     }
 
-    public static func convertToMap(name: BarcodePersonName) -> Any! {
+    public static func convertToMap(name: BarcodePersonName?) -> Any! {
         var map: [String: Any] = [:]
 
         map["first"] = name?.first
@@ -72,7 +72,7 @@ class BarcodeConverter {
         return map
     }
 
-    public static func convertToMap(driverLicense: BarcodeDriverLicense) -> Any! {
+    public static func convertToMap(driverLicense: BarcodeDriverLicense?) -> Any! {
         var map: [String: Any] = [:]
 
         map["addressCity"] = driverLicense?.addressCity
@@ -84,7 +84,7 @@ class BarcodeConverter {
         map["expiryDate"] = driverLicense?.expiryDate
         map["firstName"] = driverLicense?.firstName
         map["gender"] = driverLicense?.gender
-        map["issueDate"] = driverLicense?.issueDate
+        map["issueDate"] = driverLicense?.issuingDate
         map["issuingCountry"] = driverLicense?.issuingCountry
         map["lastName"] = driverLicense?.lastName
         map["licenseNumber"] = driverLicense?.licenseNumber
@@ -93,7 +93,7 @@ class BarcodeConverter {
         return map
     }
 
-    public static func convertToMap(address: BarcodeAddress) -> Any! {
+    public static func convertToMap(address: BarcodeAddress?) -> Any! {
         var map: [String: Any] = [:]
 
         map["addressLines"] = address?.addressLines
@@ -102,7 +102,7 @@ class BarcodeConverter {
         return map
     }
 
-    public static func convertToMap(calendarEvent: BarcodeCalendarEvent) -> Any! {
+    public static func convertToMap(calendarEvent: BarcodeCalendarEvent?) -> Any! {
         var map: [String: Any] = [:]
 
         map["description"] = calendarEvent?.eventDescription
@@ -116,12 +116,12 @@ class BarcodeConverter {
         return map
     }
 
-    public static func convertToMap(contactInfo: BarcodeContactInfo) -> Any! {
+    public static func convertToMap(contactInfo: BarcodeContactInfo?) -> Any! {
         var map: [String: Any] = [:]
 
         map["addresses"] = contactInfo?.addresses
         map["emails"] = contactInfo?.emails
-        map["name"] = BarcodeConverter.convertToMap(contactInfo?.name)
+        map["name"] = BarcodeConverter.convertToMap(name: contactInfo?.name)
         map["organization"] = contactInfo?.organization
         map["phones"] = contactInfo?.phones
         map["title"] = contactInfo?.jobTitle
@@ -129,5 +129,4 @@ class BarcodeConverter {
 
         return map
     }
-}
 }
