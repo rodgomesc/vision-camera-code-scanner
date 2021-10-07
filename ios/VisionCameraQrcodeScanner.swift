@@ -18,7 +18,7 @@ class VisionCameraQrcodeScanner: NSObject, FrameProcessorPluginBase {
             let barcodes: [Barcode] =  try barcodeScanner.results(in: image)
             if (!barcodes.isEmpty){
                 for barcode in barcodes {
-                    barCodeAttributes.append(convertBarcode(barcode))
+                    barCodeAttributes.append(self.convertBarcode(barcode: barcode))
                 }
             }
         } catch _ {
@@ -27,46 +27,48 @@ class VisionCameraQrcodeScanner: NSObject, FrameProcessorPluginBase {
         
         return barCodeAttributes
     }
-
-    func convertContent(barcode: Barcode) -> Any! {
+    
+    static func convertContent(barcode: Barcode) -> Any {
         var map: [String: Any] = [:]
-
+        
         map["type"] = barcode.valueType
-
+        
         switch barcode.valueType {
-            case .unknown, .ISBN, .text:
-                map["content"] = barcode.rawValue
-            case .contactInfo:
-                map["content"] = BarcodeConverter.convertToMap(barcode.contactInfo)
-            case .email:
-                map["content"] = BarcodeConverter.convertToMap(barcode.email)
-            case .phone:
-                map["content"] = BarcodeConverter.convertToMap(barcode.phone)
-            case .SMS:
-                map["content"] = BarcodeConverter.convertToMap(barcode.sms)
-            case .URL:
-                map["content"] = BarcodeConverter.convertToMap(barcode.url)
-            case .wiFi:
-                map["content"] = BarcodeConverter.convertToMap(barcode.wifi)
-            case .geographicCoordinates:
-                map["content"] = BarcodeConverter.convertToMap(barcode.geoPoint)
-            case .calendarEvent:
-                map["content"] = BarcodeConverter.convertToMap(barcode.calendarEvent)
-            case .driversLicense:
-                map["content"] = BarcodeConverter.convertToMap(barcode.driverLicense)
+        case .unknown, .ISBN, .text:
+            map["content"] = barcode.rawValue
+        case .contactInfo:
+            map["content"] = BarcodeConverter.convertToMap(contactInfo: barcode.contactInfo)
+        case .email:
+            map["content"] = BarcodeConverter.convertToMap(email: barcode.email)
+        case .phone:
+            map["content"] = BarcodeConverter.convertToMap(phone: barcode.phone)
+        case .SMS:
+            map["content"] = BarcodeConverter.convertToMap(sms: barcode.sms)
+        case .URL:
+            map["content"] = BarcodeConverter.convertToMap(url: barcode.url)
+        case .wiFi:
+            map["content"] = BarcodeConverter.convertToMap(wifi: barcode.wifi)
+        case .geographicCoordinates:
+            map["content"] = BarcodeConverter.convertToMap(geoPoint: barcode.geoPoint)
+        case .calendarEvent:
+            map["content"] = BarcodeConverter.convertToMap(calendarEvent: barcode.calendarEvent)
+        case .driversLicense:
+            map["content"] = BarcodeConverter.convertToMap(driverLicense: barcode.driverLicense)
+        default:
+            map = [:]
         }
-
+        
         return map
     }
-
-    func convertBarcode(barcode: Barcode) -> Any! {
+    
+    static func convertBarcode(barcode: Barcode) -> Any {
         var map: [String: Any] = [:]
-
+        
         map["cornerPoints"] = barcode.cornerPoints
         map["displayValue"] = barcode.displayValue
         map["rawValue"] = barcode.rawValue
-        map["content"] = convertContent(barcode)
-
+        map["content"] = self.convertContent(barcode: barcode)
+        
         return map
     }
 }
