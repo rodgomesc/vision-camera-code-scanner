@@ -7,6 +7,15 @@ VisionCamera Frame Processor Plugin to read barcodes using MLKit Vision Barcode 
 ```sh
 yarn add vision-camera-qrcode-scanner
 ```
+Add this to your `babel.config.js`
+```
+[
+  'react-native-reanimated/plugin',
+  {
+    globals: ['__scanQRCodes'],
+  },
+]
+```
 
 ## Usage
 
