@@ -34,7 +34,7 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
       new BarcodeScannerOptions.Builder()
       .setBarcodeFormats(
         Barcode.FORMAT_QR_CODE,
-        Barcode.FORMAT_EAN_13,
+        Barcode.FORMAT_EAN_13
       )
       .build());
 
