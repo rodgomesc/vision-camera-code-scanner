@@ -70,6 +70,8 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
     switch (type) {
       case Barcode.TYPE_UNKNOWN:
       case Barcode.TYPE_ISBN:
+        map.putString("content", barcode.getRawValue());
+        break;
       case Barcode.TYPE_TEXT:
         map.putString("content", barcode.getRawValue());
         break;
