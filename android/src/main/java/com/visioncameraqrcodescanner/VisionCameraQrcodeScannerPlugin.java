@@ -29,18 +29,19 @@ import java.util.List;
 public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
   // Note that if you know which format of barcode your app is dealing with, detection will be
   // faster than specify the supported barcode formats one by one, e.g.
-  private final BarcodeScanner barcodeScanner =
-    BarcodeScanning.getClient(
-      new BarcodeScannerOptions.Builder()
-      .setBarcodeFormats(
-        Barcode.FORMAT_QR_CODE,
-        Barcode.FORMAT_EAN_13
-      )
-      .build());
+  private final BarcodeScanner barcodeScanner;
 
   @Override
   public Object callback(ImageProxy frame, Object[] params) {
     @SuppressLint("UnsafeOptInUsageError")
+    if (barcodeScanner == null) {
+      BarcodeScanner barcodeScanner = BarcodeScanning.getClient(
+        new BarcodeScannerOptions.Builder()
+          .setBarcodeFormats(
+            params[0]
+          )
+          .build());
+    }
     Image mediaImage = frame.getImage();
     if (mediaImage != null) {
       InputImage image = InputImage.fromMediaImage(mediaImage, frame.getImageInfo().getRotationDegrees());
@@ -50,7 +51,7 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
         List<Barcode> barcodes = Tasks.await(task);
 
         WritableNativeArray array = new WritableNativeArray();
-        for (Barcode barcode: barcodes) {
+        for (Barcode barcode : barcodes) {
           array.pushMap(convertBarcode(barcode));
         }
         return array;
