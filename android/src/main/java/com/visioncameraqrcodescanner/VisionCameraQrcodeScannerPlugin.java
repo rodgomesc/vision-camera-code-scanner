@@ -29,17 +29,19 @@ import java.util.List;
 public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
   // Note that if you know which format of barcode your app is dealing with, detection will be
   // faster than specify the supported barcode formats one by one, e.g.
-  private final BarcodeScanner barcodeScanner =
-    BarcodeScanning.getClient(
-      new BarcodeScannerOptions.Builder()
-      .setBarcodeFormats(
-        Barcode.FORMAT_QR_CODE
-      )
-      .build());
+  private BarcodeScanner barcodeScanner = null;
+
 
   @Override
   public Object callback(ImageProxy frame, Object[] params) {
     @SuppressLint("UnsafeOptInUsageError")
+    if (barcodeScanner == null) {
+      Integer[] formats = new Integer[params.length];
+      for (int i = 0; i < params.length; i++) {
+        formats[i] = (Integer) params[i];
+      }
+      BarcodeScanner barcodeScanner = BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_QR_CODE).build());
+    }
     Image mediaImage = frame.getImage();
     if (mediaImage != null) {
       InputImage image = InputImage.fromMediaImage(mediaImage, frame.getImageInfo().getRotationDegrees());
@@ -49,7 +51,7 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
         List<Barcode> barcodes = Tasks.await(task);
 
         WritableNativeArray array = new WritableNativeArray();
-        for (Barcode barcode: barcodes) {
+        for (Barcode barcode : barcodes) {
           array.pushMap(convertBarcode(barcode));
         }
         return array;
@@ -69,6 +71,8 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
     switch (type) {
       case Barcode.TYPE_UNKNOWN:
       case Barcode.TYPE_ISBN:
+        map.putString("content", barcode.getRawValue());
+        break;
       case Barcode.TYPE_TEXT:
         map.putString("content", barcode.getRawValue());
         break;
