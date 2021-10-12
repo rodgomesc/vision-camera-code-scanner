@@ -51,7 +51,7 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
         List<Barcode> barcodes = Tasks.await(task);
 
         WritableNativeArray array = new WritableNativeArray();
-        for (Barcode barcode : barcodes) {
+        for (Barcode barcode: barcodes) {
           array.pushMap(convertBarcode(barcode));
         }
         return array;
