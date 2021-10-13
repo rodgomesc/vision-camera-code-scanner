@@ -8,6 +8,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.Image;
 
+import com.facebook.react.bridge.ReadableNativeArray;
 import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.WritableNativeMap;
 
@@ -23,25 +24,37 @@ import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
 import com.google.mlkit.vision.common.InputImage;
 
-
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
-  // Note that if you know which format of barcode your app is dealing with, detection will be
-  // faster than specify the supported barcode formats one by one, e.g.
   private BarcodeScanner barcodeScanner = null;
 
+  private static final Set<Integer> barcodeFormats = new HashSet<>(Arrays.asList(
+    Barcode.FORMAT_UNKNOWN,
+    Barcode.FORMAT_ALL_FORMATS,
+    Barcode.FORMAT_CODE_128,
+    Barcode.FORMAT_CODE_39,
+    Barcode.FORMAT_CODE_93,
+    Barcode.FORMAT_CODABAR,
+    Barcode.FORMAT_DATA_MATRIX,
+    Barcode.FORMAT_EAN_13,
+    Barcode.FORMAT_EAN_8,
+    Barcode.FORMAT_ITF,
+    Barcode.FORMAT_QR_CODE,
+    Barcode.FORMAT_UPC_A,
+    Barcode.FORMAT_UPC_E,
+    Barcode.FORMAT_PDF417,
+    Barcode.FORMAT_AZTEC
+  ));
 
   @Override
   public Object callback(ImageProxy frame, Object[] params) {
+    createBarcodeInstance(params);
+
     @SuppressLint("UnsafeOptInUsageError")
-    if (barcodeScanner == null) {
-      Integer[] formats = new Integer[params.length];
-      for (int i = 0; i < params.length; i++) {
-        formats[i] = (Integer) params[i];
-      }
-      BarcodeScanner barcodeScanner = BarcodeScanning.getClient(new BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_QR_CODE).build());
-    }
     Image mediaImage = frame.getImage();
     if (mediaImage != null) {
       InputImage image = InputImage.fromMediaImage(mediaImage, frame.getImageInfo().getRotationDegrees());
@@ -62,6 +75,39 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
     return null;
   }
 
+  private void createBarcodeInstance(Object[] params) {
+    if (barcodeScanner == null) {
+      if (params[0] instanceof ReadableNativeArray) {
+        ReadableNativeArray rawFormats = (ReadableNativeArray) params[0];
+
+        int formatsIndex = 0;
+        int[] formats = new int[rawFormats.size()];
+
+        for (int i = 0; i < rawFormats.size(); i++) {
+          int format = rawFormats.getInt(i);
+          if (barcodeFormats.contains(format)){
+            formats[formatsIndex] = format;
+            formatsIndex++;
+          }
+        }
+
+        if (formatsIndex == 0) {
+          throw new ArrayIndexOutOfBoundsException("Need to provide at least one valid Barcode format");
+        }
+
+        barcodeScanner = BarcodeScanning.getClient(
+          new BarcodeScannerOptions.Builder()
+            .setBarcodeFormats(
+              formats[0],
+              Arrays.copyOfRange(formats, 1, formatsIndex)
+            )
+            .build());
+      } else {
+          throw new IllegalArgumentException("Second parameter must be an Array");
+      }
+    }
+  }
+
   private WritableNativeMap convertContent(@NonNull Barcode barcode) {
     WritableNativeMap map = new WritableNativeMap();
 
@@ -71,8 +117,6 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
     switch (type) {
       case Barcode.TYPE_UNKNOWN:
       case Barcode.TYPE_ISBN:
-        map.putString("content", barcode.getRawValue());
-        break;
       case Barcode.TYPE_TEXT:
         map.putString("content", barcode.getRawValue());
         break;
@@ -132,6 +176,7 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
     }
 
     map.putMap("content", convertContent(barcode));
+    map.putInt("format", barcode.getFormat());
 
     return map;
   }
