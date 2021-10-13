@@ -7,11 +7,11 @@ import {
   useFrameProcessor,
 } from 'react-native-vision-camera';
 import { Camera } from 'react-native-vision-camera';
-import { scanQRCodes, QrCode } from 'vision-camera-qrcode-scanner';
+import { scanQRCodes, Barcode, BarcodeFormat } from 'vision-camera-qrcode-scanner';
 
 export default function App() {
   const [hasPermission, setHasPermission] = React.useState(false);
-  const [qrCodes, setQrCodes] = React.useState<QrCode[]>([]);
+  const [qrCodes, setQrCodes] = React.useState<Barcode[]>([]);
   const devices = useCameraDevices();
   const device = devices.back;
 
@@ -22,11 +22,14 @@ export default function App() {
     })();
   }, []);
 
+  React.useEffect(() => {
+    console.log(qrCodes);
+  }, [qrCodes]);
+
   const frameProcessor = useFrameProcessor((frame) => {
     'worklet';
-    const qrcode = scanQRCodes(frame);
+    const qrcode = scanQRCodes(frame, [BarcodeFormat.QR_CODE]);
     runOnJS(setQrCodes)(qrcode);
-    console.log(qrCodes);
   }, []);
 
   return (
