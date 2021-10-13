@@ -24,7 +24,7 @@ export enum BarcodeFormat {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.BarcodeValueType
  */
-export enum QrCodeType {
+export enum BarcodeValueType {
   UNKNOWN = 0,
   CONTACT_INFO = 1,
   EMAIL = 2,
@@ -43,7 +43,7 @@ export enum QrCodeType {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Address.AddressType
  */
-export enum QrCodeAddressType {
+export enum AddressType {
   UNKNOWN = 0,
   WORK = 1,
   HOME = 2,
@@ -52,15 +52,15 @@ export enum QrCodeAddressType {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Address
  */
-export interface QrCodeAddress {
+export interface Address {
   addressLines?: string[];
-  type?: QrCodeAddressType;
+  type?: AddressType;
 }
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.PersonName
  */
-export interface QrCodePersonName {
+export interface PersonName {
   first?: string;
   formattedName?: string;
   last?: string;
@@ -73,12 +73,12 @@ export interface QrCodePersonName {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.ContactInfo
  */
-export interface QrCodeContactInfo {
-  addresses?: QrCodeAddress[];
-  emails?: QrCodeEmail[];
-  name?: QrCodePersonName;
+export interface ContactInfo {
+  addresses?: Address[];
+  emails?: Email[];
+  name?: PersonName;
   organization?: string;
-  phones?: QrCodePhone[];
+  phones?: Phone[];
   title?: string;
   urls?: string[];
 }
@@ -86,7 +86,7 @@ export interface QrCodeContactInfo {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Email.FormatType
  */
-export enum QrCodeEmailType {
+export enum EmailType {
   UNKNOWN = 0,
   WORK = 1,
   HOME = 2,
@@ -95,17 +95,17 @@ export enum QrCodeEmailType {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Email
  */
-export interface QrCodeEmail {
+export interface Email {
   address?: string;
   body?: string;
   subject?: string;
-  type?: QrCodeEmailType;
+  type?: EmailType;
 }
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Phone.FormatType
  */
-export enum QrCodePhoneType {
+export enum PhoneType {
   UNKNOWN = 0,
   WORK = 1,
   HOME = 2,
@@ -116,15 +116,15 @@ export enum QrCodePhoneType {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Phone
  */
-export interface QrCodePhone {
+export interface Phone {
   number?: string;
-  type?: QrCodePhoneType;
+  type?: PhoneType;
 }
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Sms
  */
-export interface QrCodeSms {
+export interface Sms {
   message?: string;
   phoneNumber?: string;
 }
@@ -132,7 +132,7 @@ export interface QrCodeSms {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.UrlBookmark
  */
-export interface QrCodeUrl {
+export interface UrlBookmark {
   title?: string;
   url?: string;
 }
@@ -140,7 +140,7 @@ export interface QrCodeUrl {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.WiFi.EncryptionType
  */
-export enum QrCodeWifiType {
+export enum EncryptionType {
   OPEN = 1,
   WPA = 2,
   WEP = 3,
@@ -149,8 +149,8 @@ export enum QrCodeWifiType {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.WiFi
  */
-export interface QrCodeWifi {
-  encryptionType?: QrCodeWifiType;
+export interface Wifi {
+  encryptionType?: EncryptionType;
   password?: string;
   ssid?: string;
 }
@@ -158,7 +158,7 @@ export interface QrCodeWifi {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.GeoPoint
  */
-export interface QrCodeGeoPoint {
+export interface GeoPoint {
   lat?: number;
   lng?: number;
 }
@@ -166,7 +166,7 @@ export interface QrCodeGeoPoint {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.CalendarDateTime
  */
-export interface QrCodeDate {
+export interface Date {
   day: number;
   hours: number;
   minutes: number;
@@ -180,12 +180,12 @@ export interface QrCodeDate {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.CalendarEvent
  */
-export interface QrCodeCalendarEvent {
+export interface CalendarEvent {
   description?: string;
-  end?: QrCodeDate;
+  end?: Date;
   location?: string;
   organizer?: string;
-  start?: QrCodeDate;
+  start?: Date;
   status?: string;
   summary?: string;
 }
@@ -193,7 +193,7 @@ export interface QrCodeCalendarEvent {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.DriverLicense
  */
-export interface QrCodeDriverLicense {
+export interface DriverLicense {
   addressCity?: string;
   addressState?: string;
   addressStreet?: string;
@@ -231,7 +231,7 @@ export interface Point {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode
  */
-export type QrCode = {
+export type Barcode = {
   boundingBox?: Rect;
   cornerPoints?: Point[];
   displayValue?: string;
@@ -239,44 +239,44 @@ export type QrCode = {
   format: BarcodeFormat;
   content:
     | {
-        type: QrCodeType.UNKNOWN | QrCodeType.ISBN | QrCodeType.TEXT;
+        type: BarcodeValueType.UNKNOWN | BarcodeValueType.ISBN | BarcodeValueType.TEXT;
         data: string;
       }
     | {
-        type: QrCodeType.CONTACT_INFO;
-        data: QrCodeContactInfo;
+        type: BarcodeValueType.CONTACT_INFO;
+        data: ContactInfo;
       }
     | {
-        type: QrCodeType.EMAIL;
-        data: QrCodeEmail;
+        type: BarcodeValueType.EMAIL;
+        data: Email;
       }
     | {
-        type: QrCodeType.PHONE;
-        data: QrCodePhone;
+        type: BarcodeValueType.PHONE;
+        data: Phone;
       }
     | {
-        type: QrCodeType.SMS;
-        data: QrCodeSms;
+        type: BarcodeValueType.SMS;
+        data: Sms;
       }
     | {
-        type: QrCodeType.URL;
-        data: QrCodeUrl;
+        type: BarcodeValueType.URL;
+        data: UrlBookmark;
       }
     | {
-        type: QrCodeType.WIFI;
-        data: QrCodeWifi;
+        type: BarcodeValueType.WIFI;
+        data: Wifi;
       }
     | {
-        type: QrCodeType.GEO;
-        data: QrCodeGeoPoint;
+        type: BarcodeValueType.GEO;
+        data: GeoPoint;
       }
     | {
-        type: QrCodeType.CALENDAR_EVENT;
-        data: QrCodeCalendarEvent;
+        type: BarcodeValueType.CALENDAR_EVENT;
+        data: CalendarEvent;
       }
     | {
-        type: QrCodeType.DRIVER_LICENSE;
-        data: QrCodeDriverLicense;
+        type: BarcodeValueType.DRIVER_LICENSE;
+        data: DriverLicense;
       };
 };
 
