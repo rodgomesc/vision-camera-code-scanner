@@ -3,23 +3,24 @@ import type { Frame } from 'react-native-vision-camera';
 /**
   * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.BarcodeFormat
   */
-export enum CodeFormat {
-  FORMAT_UNKNOWN = -1,
-  FORMAT_ALL_FORMATS = 0,
-  FORMAT_CODE_128 = 1,
-  FORMAT_CODE_39 = 2,
-  FORMAT_CODE_93 = 4,
-  FORMAT_CODABAR = 8,
-  FORMAT_DATA_MATRIX = 16,
-  FORMAT_EAN_13 = 32,
-  FORMAT_EAN_8 = 64,
-  FORMAT_ITF = 128,
-  FORMAT_QR_CODE = 256,
-  FORMAT_UPC_A = 512,
-  FORMAT_UPC_E = 1024,
-  FORMAT_PDF417 = 2048,
-  FORMAT_AZTEC = 4096,
+export enum BarcodeFormat {
+  UNKNOWN = -1,
+  ALL_FORMATS = 0,
+  CODE_128 = 1,
+  CODE_39 = 2,
+  CODE_93 = 4,
+  CODABAR = 8,
+  DATA_MATRIX = 16,
+  EAN_13 = 32,
+  EAN_8 = 64,
+  ITF = 128,
+  QR_CODE = 256,
+  UPC_A = 512,
+  UPC_E = 1024,
+  PDF417 = 2048,
+  AZTEC = 4096,
 }
+
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.BarcodeValueType
  */
@@ -235,6 +236,7 @@ export type QrCode = {
   cornerPoints?: Point[];
   displayValue?: string;
   rawValue?: string;
+  format: BarcodeFormat;
   content:
     | {
         type: QrCodeType.UNKNOWN | QrCodeType.ISBN | QrCodeType.TEXT;
@@ -279,11 +281,15 @@ export type QrCode = {
 };
 
 /**
- * Scans QR codes.
+ * Scans barcodes in the passed frame with MLKit
+ * 
+ * @param frame Camera frame
+ * @param types Array of barcode types to detect (for optimal performance, use less types)
+ * @returns Detected barcodes from MLKit
  */
-export function scanQRCodes(frame: Frame): QrCode[] {
+export function scanQRCodes(frame: Frame, types: BarcodeFormat[]): Barcode[] {
   'worklet';
   // @ts-ignore
   // eslint-disable-next-line no-undef
-  return __scanQRCodes(frame);
+  return __scanQRCodes(frame, types);
 }
