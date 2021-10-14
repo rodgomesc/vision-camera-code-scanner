@@ -7,13 +7,14 @@ import {
   useFrameProcessor,
 } from 'react-native-vision-camera';
 import { Camera } from 'react-native-vision-camera';
-import { scanQRCodes, Barcode, BarcodeFormat } from 'vision-camera-qrcode-scanner';
+import { useScanBarcodes, BarcodeFormat } from 'vision-camera-qrcode-scanner';
 
 export default function App() {
   const [hasPermission, setHasPermission] = React.useState(false);
-  const [qrCodes, setQrCodes] = React.useState<Barcode[]>([]);
   const devices = useCameraDevices();
   const device = devices.back;
+  
+  const barcodes = useScanBarcodes([BarcodeFormat.QR_CODE]);
 
   React.useEffect(() => {
     (async () => {
@@ -23,14 +24,8 @@ export default function App() {
   }, []);
 
   React.useEffect(() => {
-    console.log(qrCodes);
-  }, [qrCodes]);
-
-  const frameProcessor = useFrameProcessor((frame) => {
-    'worklet';
-    const qrcode = scanQRCodes(frame, [BarcodeFormat.QR_CODE]);
-    runOnJS(setQrCodes)(qrcode);
-  }, []);
+    console.log(barcodes);
+  }, [barcodes]);
 
   return (
     device != null &&
@@ -43,9 +38,9 @@ export default function App() {
           frameProcessor={frameProcessor}
           frameProcessorFps={5}
         />
-        {qrCodes.map((qrcode, idx) => (
-          <Text key={idx} style={styles.qrCodeTextURL}>
-            {qrcode.displayValue}
+        {barcodes.map((barcode, idx) => (
+          <Text key={idx} style={styles.barcodeTextURL}>
+            {barcode.displayValue}
           </Text>
         ))}
       </>
@@ -54,7 +49,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  qrCodeTextURL: {
+  barcodeTextURL: {
     fontSize: 20,
     color: 'white',
     fontWeight: 'bold',
