@@ -1,4 +1,6 @@
-import type { Frame } from 'react-native-vision-camera';
+import { Frame, useFrameProcessor } from 'react-native-vision-camera';
+import { useState, useEffect } from 'react';
+import { runOnJS } from 'react-native-reanimated';
 
 /**
   * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.BarcodeFormat
@@ -287,9 +289,21 @@ export type Barcode = {
  * @param types Array of barcode types to detect (for optimal performance, use less types)
  * @returns Detected barcodes from MLKit
  */
-export function scanQRCodes(frame: Frame, types: BarcodeFormat[]): Barcode[] {
+export function scanBarcodes(frame: Frame, types: BarcodeFormat[]): Barcode[] {
   'worklet';
   // @ts-ignore
   // eslint-disable-next-line no-undef
   return __scanQRCodes(frame, types);
+}
+
+export function useScanBarcodes(types: BarcodeFormat[]): Barcode[] {
+  const [barcodes, setBarcodes] = useState([]);
+
+  useFrameProcessor((frame) => {
+    'worklet';
+    const detectedBarcodes = scanBarcodes(frame, types);
+    runOnJS(setBarcodes)(detectedBarcodes);
+  }, []);
+
+  return barcodes;
 }
