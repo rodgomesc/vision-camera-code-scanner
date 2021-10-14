@@ -19,7 +19,9 @@ Add this to your `babel.config.js`
 
 ## Usage
 
-Simply call the `useScanBarcodes()` hook or call `scanBarcodes()` inside of the `useFrameProcessor()` hook. In both cases you will need to pass an array of `BarcodeFormat` to specify the kind of barcode you want to detect. 
+Simply call the `useScanBarcodes()` hook or call `scanBarcodes()` inside of the `useFrameProcessor()` hook. In both cases you will need to pass an array of `BarcodeFormat` to specify the kind of barcode you want to detect.
+
+> Note: The underlying MLKit barcode reader is only created once meaning that changes to the array will not be reflected in the app.
 
 ```js
 import * as React from 'react';
@@ -34,7 +36,7 @@ import { Camera } from 'react-native-vision-camera';
 import { scanQRCodes, BarcodeFormat } from 'vision-camera-qrcode-scanner';
 
 export default function App() {
-   const [hasPermission, setHasPermission] = React.useState(false);
+  const [hasPermission, setHasPermission] = React.useState(false);
   const devices = useCameraDevices();
   const device = devices.back;
   
