@@ -1,10 +1,8 @@
-import { Frame, useFrameProcessor } from 'react-native-vision-camera';
-import { useState, useEffect } from 'react';
-import { runOnJS } from 'react-native-reanimated';
+import type { Frame } from 'react-native-vision-camera';
 
 /**
-  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.BarcodeFormat
-  */
+ * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.BarcodeFormat
+ */
 export enum BarcodeFormat {
   UNKNOWN = -1,
   ALL_FORMATS = 0,
@@ -241,7 +239,10 @@ export type Barcode = {
   format: BarcodeFormat;
   content:
     | {
-        type: BarcodeValueType.UNKNOWN | BarcodeValueType.ISBN | BarcodeValueType.TEXT;
+        type:
+          | BarcodeValueType.UNKNOWN
+          | BarcodeValueType.ISBN
+          | BarcodeValueType.TEXT;
         data: string;
       }
     | {
@@ -284,7 +285,7 @@ export type Barcode = {
 
 /**
  * Scans barcodes in the passed frame with MLKit
- * 
+ *
  * @param frame Camera frame
  * @param types Array of barcode types to detect (for optimal performance, use less types)
  * @returns Detected barcodes from MLKit
@@ -296,14 +297,4 @@ export function scanBarcodes(frame: Frame, types: BarcodeFormat[]): Barcode[] {
   return __scanQRCodes(frame, types);
 }
 
-export function useScanBarcodes(types: BarcodeFormat[]): Barcode[] {
-  const [barcodes, setBarcodes] = useState([]);
-
-  useFrameProcessor((frame) => {
-    'worklet';
-    const detectedBarcodes = scanBarcodes(frame, types);
-    runOnJS(setBarcodes)(detectedBarcodes);
-  }, []);
-
-  return barcodes;
-}
+export * from './hook';

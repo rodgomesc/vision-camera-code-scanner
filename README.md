@@ -25,22 +25,18 @@ Simply call the `useScanBarcodes()` hook or call `scanBarcodes()` inside of the 
 
 ```js
 import * as React from 'react';
-import { runOnJS } from 'react-native-reanimated';
 
 import { StyleSheet, Text } from 'react-native';
-import {
-  useCameraDevices,
-  useFrameProcessor,
-} from 'react-native-vision-camera';
+import { useCameraDevices } from 'react-native-vision-camera';
 import { Camera } from 'react-native-vision-camera';
-import { scanQRCodes, BarcodeFormat } from 'vision-camera-qrcode-scanner';
+import { useScanBarcodes, BarcodeFormat } from 'vision-camera-qrcode-scanner';
 
 export default function App() {
   const [hasPermission, setHasPermission] = React.useState(false);
   const devices = useCameraDevices();
   const device = devices.back;
   
-  const barcodes = useScanBarcodes([BarcodeFormat.QR_CODE]);
+  const [frameProcessor, barcodes] = useScanBarcodes([BarcodeFormat.QR_CODE]);
 
   // Alternatively you can use the underlying function:
   // 
