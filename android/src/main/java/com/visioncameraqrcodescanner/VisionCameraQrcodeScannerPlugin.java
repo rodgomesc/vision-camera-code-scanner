@@ -118,34 +118,34 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
       case Barcode.TYPE_UNKNOWN:
       case Barcode.TYPE_ISBN:
       case Barcode.TYPE_TEXT:
-        map.putString("content", barcode.getRawValue());
+        map.putString("data", barcode.getRawValue());
         break;
       case Barcode.TYPE_CONTACT_INFO:
-        map.putMap("content", convertToMap(barcode.getContactInfo()));
+        map.putMap("data", convertToMap(barcode.getContactInfo()));
         break;
       case Barcode.TYPE_EMAIL:
-        map.putMap("content", convertToMap(barcode.getEmail()));
+        map.putMap("data", convertToMap(barcode.getEmail()));
         break;
       case Barcode.TYPE_PHONE:
-        map.putMap("content", convertToMap(barcode.getPhone()));
+        map.putMap("data", convertToMap(barcode.getPhone()));
         break;
       case Barcode.TYPE_SMS:
-        map.putMap("content", convertToMap(barcode.getSms()));
+        map.putMap("data", convertToMap(barcode.getSms()));
         break;
       case Barcode.TYPE_URL:
-        map.putMap("content", convertToMap(barcode.getUrl()));
+        map.putMap("data", convertToMap(barcode.getUrl()));
         break;
       case Barcode.TYPE_WIFI:
-        map.putMap("content", convertToMap(barcode.getWifi()));
+        map.putMap("data", convertToMap(barcode.getWifi()));
         break;
       case Barcode.TYPE_GEO:
-        map.putMap("content", convertToMap(barcode.getGeoPoint()));
+        map.putMap("data", convertToMap(barcode.getGeoPoint()));
         break;
       case Barcode.TYPE_CALENDAR_EVENT:
-        map.putMap("content", convertToMap(barcode.getCalendarEvent()));
+        map.putMap("data", convertToMap(barcode.getCalendarEvent()));
         break;
       case Barcode.TYPE_DRIVER_LICENSE:
-        map.putMap("content", convertToMap(barcode.getDriverLicense()));
+        map.putMap("data", convertToMap(barcode.getDriverLicense()));
         break;
     }
 

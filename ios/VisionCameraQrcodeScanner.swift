@@ -35,25 +35,25 @@ class VisionCameraQrcodeScanner: NSObject, FrameProcessorPluginBase {
         
         switch barcode.valueType {
         case .unknown, .ISBN, .text:
-            map["content"] = barcode.rawValue
+            map["data"] = barcode.rawValue
         case .contactInfo:
-            map["content"] = BarcodeConverter.convertToMap(contactInfo: barcode.contactInfo)
+            map["data"] = BarcodeConverter.convertToMap(contactInfo: barcode.contactInfo)
         case .email:
-            map["content"] = BarcodeConverter.convertToMap(email: barcode.email)
+            map["data"] = BarcodeConverter.convertToMap(email: barcode.email)
         case .phone:
-            map["content"] = BarcodeConverter.convertToMap(phone: barcode.phone)
+            map["data"] = BarcodeConverter.convertToMap(phone: barcode.phone)
         case .SMS:
-            map["content"] = BarcodeConverter.convertToMap(sms: barcode.sms)
+            map["data"] = BarcodeConverter.convertToMap(sms: barcode.sms)
         case .URL:
-            map["content"] = BarcodeConverter.convertToMap(url: barcode.url)
+            map["data"] = BarcodeConverter.convertToMap(url: barcode.url)
         case .wiFi:
-            map["content"] = BarcodeConverter.convertToMap(wifi: barcode.wifi)
+            map["data"] = BarcodeConverter.convertToMap(wifi: barcode.wifi)
         case .geographicCoordinates:
-            map["content"] = BarcodeConverter.convertToMap(geoPoint: barcode.geoPoint)
+            map["data"] = BarcodeConverter.convertToMap(geoPoint: barcode.geoPoint)
         case .calendarEvent:
-            map["content"] = BarcodeConverter.convertToMap(calendarEvent: barcode.calendarEvent)
+            map["data"] = BarcodeConverter.convertToMap(calendarEvent: barcode.calendarEvent)
         case .driversLicense:
-            map["content"] = BarcodeConverter.convertToMap(driverLicense: barcode.driverLicense)
+            map["data"] = BarcodeConverter.convertToMap(driverLicense: barcode.driverLicense)
         default:
             map = [:]
         }
