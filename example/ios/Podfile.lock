@@ -422,7 +422,7 @@ PODS:
   - RNScreens (3.5.0):
     - React-Core
     - React-RCTImage
-  - vision-camera-qrcode-scanner (0.1.3):
+  - vision-camera-qrcode-scanner (0.1.5):
     - GoogleMLKit/BarcodeScanning
     - React-Core
   - VisionCamera (2.7.0):
@@ -644,7 +644,7 @@ SPEC CHECKSUMS:
   ReactCommon: eafed38eec7b591c31751bfa7494801618460459
   RNReanimated: 48e578538b2fad573d3d5ce2e80ad375e1534d87
   RNScreens: 01ab149b5dd5c27f5ff26741b1d2bdf2cee1af35
-  vision-camera-qrcode-scanner: 65cf7fd57e33c0ac7b0503769d8c2711d18502c6
+  vision-camera-qrcode-scanner: 64bcfdad2be941ee66ea0a69ca816ca191d51cd3
   VisionCamera: 575e691d9eda91dce798f9958770b39841bbd981
   Yoga: aa0cb45287ebe1004c02a13f279c55a95f1572f4
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
