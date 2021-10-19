@@ -4,18 +4,16 @@ import MLKitVision
 @objc(VisionCameraQrcodeScanner)
 class VisionCameraQrcodeScanner: NSObject, FrameProcessorPluginBase {
     
-    static var format: BarcodeFormat = .qrCode
-    static var barcodeOptions = BarcodeScannerOptions(formats: format)
-    static var barcodeScanner = BarcodeScanner.barcodeScanner(options: barcodeOptions)
+    static var barcodeScanner: BarcodeScanner?
     
     @objc
-    public static func callback(_ frame: Frame!, withArgs _: [Any]!) -> Any! {
+    public static func callback(_ frame: Frame!, withArgs args: [Any]!) -> Any! {
         let image = VisionImage(buffer: frame.buffer)
         image.orientation = .up
         var barCodeAttributes: [Any] = []
-        
         do {
-            let barcodes: [Barcode] =  try barcodeScanner.results(in: image)
+            try self.createScanner(args)
+            let barcodes: [Barcode] = try barcodeScanner!.results(in: image)
             if (!barcodes.isEmpty){
                 for barcode in barcodes {
                     barCodeAttributes.append(self.convertBarcode(barcode: barcode))
@@ -26,6 +24,20 @@ class VisionCameraQrcodeScanner: NSObject, FrameProcessorPluginBase {
         }
         
         return barCodeAttributes
+    }
+    
+    static func createScanner(_ args: [Any]!) throws {
+        if (barcodeScanner == nil) {
+            guard let rawFormats = args[0] as? [Int] else {
+                throw BarcodeError.noBarcodeFormatProvided
+            }
+            var formats: [BarcodeFormat] = []
+            rawFormats.forEach { rawFormat in
+                formats.append(BarcodeFormat(rawValue: rawFormat))
+            }
+            let barcodeOptions = BarcodeScannerOptions(formats: BarcodeFormat(formats))
+            barcodeScanner = BarcodeScanner.barcodeScanner(options: barcodeOptions)
+        }
     }
     
     static func convertContent(barcode: Barcode) -> Any {
