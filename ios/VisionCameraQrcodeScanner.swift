@@ -5,6 +5,7 @@ import MLKitVision
 class VisionCameraQrcodeScanner: NSObject, FrameProcessorPluginBase {
     
     static var barcodeScanner: BarcodeScanner?
+    static var barcodeRawFormats: [Int]?
     
     @objc
     public static func callback(_ frame: Frame!, withArgs args: [Any]!) -> Any! {
@@ -27,16 +28,17 @@ class VisionCameraQrcodeScanner: NSObject, FrameProcessorPluginBase {
     }
     
     static func createScanner(_ args: [Any]!) throws {
-        if (barcodeScanner == nil) {
-            guard let rawFormats = args[0] as? [Int] else {
-                throw BarcodeError.noBarcodeFormatProvided
-            }
+        guard let rawFormats = args[0] as? [Int] else {
+            throw BarcodeError.noBarcodeFormatProvided
+        }
+        if (barcodeScanner == nil || barcodeRawFormats != rawFormats) {
             var formats: [BarcodeFormat] = []
             rawFormats.forEach { rawFormat in
                 formats.append(BarcodeFormat(rawValue: rawFormat))
             }
             let barcodeOptions = BarcodeScannerOptions(formats: BarcodeFormat(formats))
             barcodeScanner = BarcodeScanner.barcodeScanner(options: barcodeOptions)
+            barcodeRawFormats = rawFormats
         }
     }
     
