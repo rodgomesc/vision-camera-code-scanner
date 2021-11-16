@@ -1,6 +1,19 @@
 import MLKitBarcodeScanning
 
 class BarcodeConverter {
+    public static func convertToArray(points: [CGPoint]) -> Any! {
+        return points.map(convertToMap(point:))
+    }
+
+    public static func convertToMap(point: CGPoint) -> Any! {
+        var map: [String: Any] = [:]
+
+        map["x"] = point.x
+        map["y"] = point.y
+
+        return map;
+    }
+
     public static func convertToMap(url: BarcodeURLBookmark?) -> Any! {
         var map: [String: Any] = [:]
 
