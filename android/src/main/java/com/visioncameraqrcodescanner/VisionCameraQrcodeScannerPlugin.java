@@ -31,6 +31,7 @@ import java.util.Set;
 
 public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
   private BarcodeScanner barcodeScanner = null;
+  private int barcodeScannerFormatsBitmap = -1;
 
   private static final Set<Integer> barcodeFormats = new HashSet<>(Arrays.asList(
     Barcode.FORMAT_UNKNOWN,
@@ -76,25 +77,28 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
   }
 
   private void createBarcodeInstance(Object[] params) {
-    if (barcodeScanner == null) {
-      if (params[0] instanceof ReadableNativeArray) {
-        ReadableNativeArray rawFormats = (ReadableNativeArray) params[0];
+    if (params[0] instanceof ReadableNativeArray) {
+      ReadableNativeArray rawFormats = (ReadableNativeArray) params[0];
 
-        int formatsIndex = 0;
-        int[] formats = new int[rawFormats.size()];
+      int formatsBitmap = 0;
+      int formatsIndex = 0;
+      int formatsSize = rawFormats.size();
+      int[] formats = new int[formatsSize];
 
-        for (int i = 0; i < rawFormats.size(); i++) {
-          int format = rawFormats.getInt(i);
-          if (barcodeFormats.contains(format)){
-            formats[formatsIndex] = format;
-            formatsIndex++;
-          }
+      for (int i = 0; i < formatsSize; i++) {
+        int format = rawFormats.getInt(i);
+        if (barcodeFormats.contains(format)){
+          formats[formatsIndex] = format;
+          formatsIndex++;
+          formatsBitmap |= format;
         }
+      }
 
-        if (formatsIndex == 0) {
-          throw new ArrayIndexOutOfBoundsException("Need to provide at least one valid Barcode format");
-        }
+      if (formatsIndex == 0) {
+        throw new ArrayIndexOutOfBoundsException("Need to provide at least one valid Barcode format");
+      }
 
+      if (barcodeScanner == null || formatsBitmap != barcodeScannerFormatsBitmap) {
         barcodeScanner = BarcodeScanning.getClient(
           new BarcodeScannerOptions.Builder()
             .setBarcodeFormats(
@@ -102,9 +106,10 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
               Arrays.copyOfRange(formats, 1, formatsIndex)
             )
             .build());
-      } else {
-          throw new IllegalArgumentException("Second parameter must be an Array");
+        barcodeScannerFormatsBitmap = formatsBitmap;
       }
+    } else {
+      throw new IllegalArgumentException("Second parameter must be an Array");
     }
   }
 
