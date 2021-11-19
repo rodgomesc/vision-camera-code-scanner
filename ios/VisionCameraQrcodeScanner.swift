@@ -64,7 +64,7 @@ class VisionCameraQrcodeScanner: NSObject, FrameProcessorPluginBase {
     static func convertBarcode(barcode: Barcode) -> Any {
         var map: [String: Any] = [:]
         
-        map["cornerPoints"] = BarcodeConverter.convertToArray(barcode.cornerPoints)
+        map["cornerPoints"] = barcode.cornerPoints
         map["displayValue"] = barcode.displayValue
         map["rawValue"] = barcode.rawValue
         map["content"] = self.convertContent(barcode: barcode)
