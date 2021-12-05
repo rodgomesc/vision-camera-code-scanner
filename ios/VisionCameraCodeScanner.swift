@@ -1,8 +1,8 @@
 import MLKitBarcodeScanning
 import MLKitVision
 
-@objc(VisionCameraQrcodeScanner)
-class VisionCameraQrcodeScanner: NSObject, FrameProcessorPluginBase {
+@objc(VisionCameraCodeScanner)
+class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
     
     static var barcodeScanner: BarcodeScanner?
     static var barcodeFormatOptionSet: BarcodeFormat = []

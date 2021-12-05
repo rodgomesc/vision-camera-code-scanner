@@ -1,4 +1,4 @@
-package com.visioncameraqrcodescanner;
+package com.visioncameracodescanner;
 
 import android.graphics.Point;
 import android.graphics.Rect;

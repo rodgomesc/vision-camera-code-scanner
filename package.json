@@ -1,6 +1,6 @@
 {
-  "name": "vision-camera-qrcode-scanner",
-  "version": "0.1.5",
+  "name": "vision-camera-code-scanner",
+  "version": "0.1.6",
   "description": "VisionCamera Frame Processor Plugin to read barcodes using MLKit Vision Barcode Scanning",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -16,7 +16,7 @@
     "android",
     "ios",
     "cpp",
-    "vision-camera-qrcode-scanner.podspec",
+    "vision-camera-code-scanner.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build"
@@ -36,19 +36,19 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/rodgomesc/vision-camera-qrcode-scanner",
+  "repository": "https://github.com/rodgomesc/vision-camera-code-scanner",
   "author": "Rodrigo gomes <rodgomesc@gmail.com> (https://github.com/rodgomesc)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rodgomesc/vision-camera-qrcode-scanner/issues"
+    "url": "https://github.com/rodgomesc/vision-camera-code-scanner/issues"
   },
-  "homepage": "https://github.com/rodgomesc/vision-camera-qrcode-scanner#readme",
+  "homepage": "https://github.com/rodgomesc/vision-camera-code-scanner#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "react-native-reanimated": "2.2.0",
-    "react-native-vision-camera": "^2.7.0",
+    "react-native-reanimated": "2.3.0-beta.4",
+    "react-native-vision-camera": "^2.9.4",
     "@commitlint/config-conventional": "^11.0.0",
     "@react-native-community/eslint-config": "^2.0.0",
     "@release-it/conventional-changelog": "^2.0.0",
@@ -72,7 +72,7 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-vision-camera": ">=2.0.0"
+    "react-native-vision-camera": ">=2.9.4"
   },
   "jest": {
     "preset": "react-native",

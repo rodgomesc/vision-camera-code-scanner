@@ -1,4 +1,4 @@
-package com.visioncameraqrcodescanner;
+package com.visioncameracodescanner;
 
 import androidx.annotation.NonNull;
 
@@ -11,12 +11,12 @@ import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
 import java.util.Collections;
 import java.util.List;
 
-public class VisionCameraQrcodeScannerPluginPackage implements ReactPackage {
+public class VisionCameraCodeScannerPluginPackage implements ReactPackage {
   @NonNull
   @org.jetbrains.annotations.NotNull
   @Override
   public List<NativeModule> createNativeModules(@NonNull @org.jetbrains.annotations.NotNull ReactApplicationContext reactContext) {
-    FrameProcessorPlugin.register(new VisionCameraQrcodeScannerPlugin());
+    FrameProcessorPlugin.register(new VisionCameraCodeScannerPlugin());
     return Collections.emptyList();
   }
 

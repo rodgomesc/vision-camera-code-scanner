@@ -294,7 +294,7 @@ export function scanBarcodes(frame: Frame, types: BarcodeFormat[]): Barcode[] {
   'worklet';
   // @ts-ignore
   // eslint-disable-next-line no-undef
-  return __scanQRCodes(frame, types);
+  return __scanCodes(frame, types);
 }
 
 export * from './hook';

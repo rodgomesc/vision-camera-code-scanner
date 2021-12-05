@@ -1,7 +1,7 @@
-package com.visioncameraqrcodescanner;
+package com.visioncameracodescanner;
 
-import static com.visioncameraqrcodescanner.BarcodeConverter.convertToArray;
-import static com.visioncameraqrcodescanner.BarcodeConverter.convertToMap;
+import static com.visioncameracodescanner.BarcodeConverter.convertToArray;
+import static com.visioncameracodescanner.BarcodeConverter.convertToMap;
 
 import android.annotation.SuppressLint;
 import android.graphics.Point;
@@ -29,7 +29,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
+public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
   private BarcodeScanner barcodeScanner = null;
   private int barcodeScannerFormatsBitmap = -1;
 
@@ -186,7 +186,7 @@ public class VisionCameraQrcodeScannerPlugin extends FrameProcessorPlugin {
     return map;
   }
 
-  VisionCameraQrcodeScannerPlugin() {
-    super("scanQRCodes");
+  VisionCameraCodeScannerPlugin() {
+    super("scanCodes");
   }
 }

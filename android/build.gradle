@@ -18,11 +18,11 @@ def safeExtGet(prop, fallback) {
 }
 
 android {
-    compileSdkVersion safeExtGet('VisionCameraQrcodeScanner_compileSdkVersion', 30)
-    ndkVersion "22.0.7026061"
+    compileSdkVersion safeExtGet('VisionCameraCodeScanner_compileSdkVersion', 30)
+    ndkVersion "21.4.7075529"
     defaultConfig {
-        minSdkVersion safeExtGet('VisionCameraQrcodeScanner_minSdkVersion', 21)
-        targetSdkVersion safeExtGet('VisionCameraQrcodeScanner_targetSdkVersion', 31)
+        minSdkVersion safeExtGet('VisionCameraCodeScanner_minSdkVersion', 21)
+        targetSdkVersion safeExtGet('VisionCameraCodeScanner_targetSdkVersion', 31)
         versionCode 1
         versionName "1.0"
 
