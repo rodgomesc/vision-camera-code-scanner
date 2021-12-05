@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "VisionCameraQrcodeScannerExample.app"
-               BlueprintName = "VisionCameraQrcodeScannerExample"
-               ReferencedContainer = "container:VisionCameraQrcodeScannerExample.xcodeproj">
+               BuildableName = "VisionCameraCodeScannerExample.app"
+               BlueprintName = "VisionCameraCodeScannerExample"
+               ReferencedContainer = "container:VisionCameraCodeScannerExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,11 +45,13 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "VisionCameraQrcodeScannerExample.app"
-            BlueprintName = "VisionCameraQrcodeScannerExample"
-            ReferencedContainer = "container:VisionCameraQrcodeScannerExample.xcodeproj">
+            BuildableName = "VisionCameraCodeScannerExample.app"
+            BlueprintName = "VisionCameraCodeScannerExample"
+            ReferencedContainer = "container:VisionCameraCodeScannerExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -66,9 +68,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "VisionCameraQrcodeScannerExample.app"
-            BlueprintName = "VisionCameraQrcodeScannerExample"
-            ReferencedContainer = "container:VisionCameraQrcodeScannerExample.xcodeproj">
+            BuildableName = "VisionCameraCodeScannerExample.app"
+            BlueprintName = "VisionCameraCodeScannerExample"
+            ReferencedContainer = "container:VisionCameraCodeScannerExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -83,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "VisionCameraQrcodeScannerExample.app"
-            BlueprintName = "VisionCameraQrcodeScannerExample"
-            ReferencedContainer = "container:VisionCameraQrcodeScannerExample.xcodeproj">
+            BuildableName = "VisionCameraCodeScannerExample.app"
+            BlueprintName = "VisionCameraCodeScannerExample"
+            ReferencedContainer = "container:VisionCameraCodeScannerExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

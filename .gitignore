@@ -29,8 +29,10 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 
+
 # Android/IJ
 #
+*.hprof
 .idea
 .gradle
 local.properties

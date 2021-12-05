@@ -1,6 +1,6 @@
 {
-  "name": "vision-camera-qrcode-scanner-example",
-  "description": "Example app for vision-camera-qrcode-scanner",
+  "name": "vision-camera-code-scanner-example",
+  "description": "Example app for vision-camera-code-scanner",
   "version": "0.1.2",
   "private": true,
   "scripts": {
@@ -10,16 +10,15 @@
   },
   "dependencies": {
     "react": "17.0.2",
-    "react-native": "0.65.1",
-    "react-native-reanimated": "^2.3.0-alpha.3",
+    "react-native": "0.66.3",
+    "react-native-reanimated": "^2.3.0-beta.4",
     "react-native-screens": "3.5.0",
-    "react-native-vision-camera": "^2.7.0"
+    "react-native-vision-camera": "^2.9.4"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/runtime": "^7.15.3",
     "babel-plugin-module-resolver": "^4.1.0",
-    "metro-react-native-babel-preset": "^0.66.2",
-    "react-native-codegen": "^0.0.7"
+    "metro-react-native-babel-preset": "^0.66.2"
   }
 }

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 
-		5E555C0D2413F4C50049A1A2 /* VisionCameraQrcodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* VisionCameraQrcodeScanner.m */; };
-		F4FF95D7245B92E800C19C63 /*  VisionCameraQrcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  VisionCameraQrcodeScanner.swift */; };
+		5E555C0D2413F4C50049A1A2 /* VisionCameraCodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* VisionCameraCodeScanner.m */; };
+		F4FF95D7245B92E800C19C63 /*  VisionCameraCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  VisionCameraCodeScanner.swift */; };
 
 /* End PBXBuildFile section */
 
@@ -26,11 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libVisionCameraQrcodeScanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVisionCameraQrcodeScanner.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		134814201AA4EA6300B7C361 /* libVisionCameraCodeScanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVisionCameraCodeScanner.a; sourceTree = BUILT_PRODUCTS_DIR; };
 
-		B3E7B5891CC2AC0600A0062D /* VisionCameraQrcodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionCameraQrcodeScanner.m; sourceTree = "<group>"; };
-		F4FF95D5245B92E700C19C63 /* VisionCameraQrcodeScanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VisionCameraQrcodeScanner-Bridging-Header.h"; sourceTree = "<group>"; };
-		F4FF95D6245B92E800C19C63 /* VisionCameraQrcodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCameraQrcodeScanner.swift; sourceTree = "<group>"; };
+		B3E7B5891CC2AC0600A0062D /* VisionCameraCodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionCameraCodeScanner.m; sourceTree = "<group>"; };
+		F4FF95D5245B92E700C19C63 /* VisionCameraCodeScanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VisionCameraCodeScanner-Bridging-Header.h"; sourceTree = "<group>"; };
+		F4FF95D6245B92E800C19C63 /* VisionCameraCodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCameraCodeScanner.swift; sourceTree = "<group>"; };
 
 /* End PBXFileReference section */
 
@@ -48,7 +48,7 @@
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				134814201AA4EA6300B7C361 /* libVisionCameraQrcodeScanner.a */,
+				134814201AA4EA6300B7C361 /* libVisionCameraCodeScanner.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,9 +57,9 @@
 			isa = PBXGroup;
 			children = (
 
-				F4FF95D6245B92E800C19C63 /* VisionCameraQrcodeScanner.swift */,
-				B3E7B5891CC2AC0600A0062D /* VisionCameraQrcodeScanner.m */,
-				F4FF95D5245B92E700C19C63 /* VisionCameraQrcodeScanner-Bridging-Header.h */,
+				F4FF95D6245B92E800C19C63 /* VisionCameraCodeScanner.swift */,
+				B3E7B5891CC2AC0600A0062D /* VisionCameraCodeScanner.m */,
+				F4FF95D5245B92E700C19C63 /* VisionCameraCodeScanner-Bridging-Header.h */,
 
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
@@ -68,9 +68,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58B511DA1A9E6C8500147676 /* VisionCameraQrcodeScanner */ = {
+		58B511DA1A9E6C8500147676 /* VisionCameraCodeScanner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "VisionCameraQrcodeScanner" */;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "VisionCameraCodeScanner" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
@@ -80,9 +80,9 @@
 			);
 			dependencies = (
 			);
-			name = VisionCameraQrcodeScanner;
+			name = VisionCameraCodeScanner;
 			productName = RCTDataManager;
-			productReference = 134814201AA4EA6300B7C361 /* libVisionCameraQrcodeScanner.a */;
+			productReference = 134814201AA4EA6300B7C361 /* libVisionCameraCodeScanner.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +99,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "VisionCameraQrcodeScanner" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "VisionCameraCodeScanner" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -112,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58B511DA1A9E6C8500147676 /* VisionCameraQrcodeScanner */,
+				58B511DA1A9E6C8500147676 /* VisionCameraCodeScanner */,
 			);
 		};
 /* End PBXProject section */
@@ -123,8 +123,8 @@
 			buildActionMask = 2147483647;
 			files = (
 
-				F4FF95D7245B92E800C19C63 /* VisionCameraQrcodeScanner.swift in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* VisionCameraQrcodeScanner.m in Sources */,
+				F4FF95D7245B92E800C19C63 /* VisionCameraCodeScanner.swift in Sources */,
+				B3E7B58A1CC2AC0600A0062D /* VisionCameraCodeScanner.m in Sources */,
 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,10 +236,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = VisionCameraQrcodeScanner;
+				PRODUCT_NAME = VisionCameraCodeScanner;
 				SKIP_INSTALL = YES;
 
-				SWIFT_OBJC_BRIDGING_HEADER = "VisionCameraQrcodeScanner-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "VisionCameraCodeScanner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 
@@ -257,10 +257,10 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = VisionCameraQrcodeScanner;
+				PRODUCT_NAME = VisionCameraCodeScanner;
 				SKIP_INSTALL = YES;
 
-				SWIFT_OBJC_BRIDGING_HEADER = "VisionCameraQrcodeScanner-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "VisionCameraCodeScanner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 
 			};
@@ -269,7 +269,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "VisionCameraQrcodeScanner" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "VisionCameraCodeScanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
@@ -278,7 +278,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "VisionCameraQrcodeScanner" */ = {
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "VisionCameraCodeScanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,
