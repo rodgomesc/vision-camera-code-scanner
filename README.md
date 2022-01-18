@@ -77,7 +77,7 @@ export default function App() {
             {barcode.displayValue}
           </Text>
         ))}
-      <p/>
+      </>
     )
   );
 }
