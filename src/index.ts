@@ -283,6 +283,13 @@ export type Barcode = {
       };
 };
 
+export interface CodeScannerOptions {
+  /**
+   * checkInverted: `Allows you to also scan white barcode with black backgrounds`
+   */
+  checkInverted?: boolean;
+}
+
 /**
  * Scans barcodes in the passed frame with MLKit
  *
@@ -290,11 +297,15 @@ export type Barcode = {
  * @param types Array of barcode types to detect (for optimal performance, use less types)
  * @returns Detected barcodes from MLKit
  */
-export function scanBarcodes(frame: Frame, types: BarcodeFormat[]): Barcode[] {
+export function scanBarcodes(
+  frame: Frame,
+  types: BarcodeFormat[],
+  options?: CodeScannerOptions
+): Barcode[] {
   'worklet';
   // @ts-ignore
   // eslint-disable-next-line no-undef
-  return __scanCodes(frame, types);
+  return __scanCodes(frame, types, options);
 }
 
 export * from './hook';

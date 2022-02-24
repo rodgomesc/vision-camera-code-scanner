@@ -44,13 +44,15 @@ export default function App() {
   const devices = useCameraDevices();
   const device = devices.back;
 
-  const [frameProcessor, barcodes] = useScanBarcodes([BarcodeFormat.QR_CODE]);
+  const [frameProcessor, barcodes] = useScanBarcodes([BarcodeFormat.QR_CODE], {
+    checkInverted: true,
+  });
 
   // Alternatively you can use the underlying function:
   //
   // const frameProcessor = useFrameProcessor((frame) => {
   //   'worklet';
-  //   const detectedBarcodes = scanBarcodes(frame, [BarcodeFormat.QR_CODE]);
+  //   const detectedBarcodes = scanBarcodes(frame, [BarcodeFormat.QR_CODE], { checkInverted: true });
   //   runOnJS(setBarcodes)(detectedBarcodes);
   // }, []);
 
@@ -89,7 +91,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
 ```
 
 ## Contributing
