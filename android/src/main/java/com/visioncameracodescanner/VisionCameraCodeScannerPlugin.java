@@ -74,7 +74,6 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
         boolean checkInverted = scannerOptions.getBoolean("checkInverted");
 
         if (checkInverted) {
-          // Convert image to bitmap
           Bitmap bitmap = null;
           try {
             bitmap = ImageConvertUtils.getInstance().getUpRightBitmap(image);
