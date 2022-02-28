@@ -217,6 +217,7 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
     return map;
   }
 
+  // Bitmap Inversion https://gist.github.com/moneytoo/87e3772c821cb1e86415
   private Bitmap invert(Bitmap src)
 	{ 
 		int height = src.getHeight();

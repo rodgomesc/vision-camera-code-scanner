@@ -110,6 +110,7 @@ class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
         return map
     }
     
+    // CIImage Inversion Filter https://stackoverflow.com/a/42987565
     static func invert(src: CIImage) -> UIImage? {
         guard let filter = CIFilter(name: "CIColorInvert") else { return nil }
         filter.setDefaults()
