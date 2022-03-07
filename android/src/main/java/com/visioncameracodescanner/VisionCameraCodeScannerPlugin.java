@@ -78,7 +78,7 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
           try {
             bitmap = ImageConvertUtils.getInstance().getUpRightBitmap(image);
             Bitmap invertedBitmap = this.invert(bitmap);
-            InputImage invertedImage = InputImage.fromBitmap(invertedBitmap, frame.getImageInfo().getRotationDegrees());
+            InputImage invertedImage = InputImage.fromBitmap(invertedBitmap, 0);
             tasks.add(barcodeScanner.process(invertedImage));
           } catch (Exception e) {
             e.printStackTrace();
