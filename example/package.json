@@ -11,7 +11,7 @@
   "dependencies": {
     "react": "17.0.2",
     "react-native": "0.66.3",
-    "react-native-reanimated": "2.3.0-beta.4",
+    "react-native-reanimated": "2.4.1",
     "react-native-screens": "3.5.0",
     "react-native-vision-camera": "^2.9.4"
   },
@@ -22,6 +22,6 @@
     "metro-react-native-babel-preset": "^0.66.2"
   },
   "resolutions": {
-    "**/react-native-reanimated": "2.3.0-beta.4"
+    "**/react-native-reanimated": "2.4.1"
   }
 }

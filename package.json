@@ -1,6 +1,6 @@
 {
   "name": "vision-camera-code-scanner",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "VisionCamera Frame Processor Plugin to read barcodes using MLKit Vision Barcode Scanning",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -47,7 +47,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "react-native-reanimated": "2.3.0-beta.4",
+    "react-native-reanimated":  "2.4.1",
     "react-native-vision-camera": "^2.9.4",
     "@commitlint/config-conventional": "^11.0.0",
     "@react-native-community/eslint-config": "^2.0.0",

@@ -4,11 +4,17 @@ import static com.visioncameracodescanner.BarcodeConverter.convertToArray;
 import static com.visioncameracodescanner.BarcodeConverter.convertToMap;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.Image;
 
 import com.facebook.react.bridge.ReadableNativeArray;
+import com.facebook.react.bridge.ReadableNativeMap;
 import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.WritableNativeMap;
 
@@ -23,7 +29,9 @@ import com.google.mlkit.vision.barcode.BarcodeScanner;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
 import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.common.internal.ImageConvertUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -58,11 +66,34 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
     @SuppressLint("UnsafeOptInUsageError")
     Image mediaImage = frame.getImage();
     if (mediaImage != null) {
+      ArrayList<Task<List<Barcode>>> tasks = new ArrayList<Task<List<Barcode>>>();
       InputImage image = InputImage.fromMediaImage(mediaImage, frame.getImageInfo().getRotationDegrees());
-      Task<List<Barcode>> task = barcodeScanner.process(image);
+
+      if (params[1] instanceof ReadableNativeMap) {
+        ReadableNativeMap scannerOptions = (ReadableNativeMap) params[1];
+        boolean checkInverted = scannerOptions.getBoolean("checkInverted");
+
+        if (checkInverted) {
+          Bitmap bitmap = null;
+          try {
+            bitmap = ImageConvertUtils.getInstance().getUpRightBitmap(image);
+            Bitmap invertedBitmap = this.invert(bitmap);
+            InputImage invertedImage = InputImage.fromBitmap(invertedBitmap, 0);
+            tasks.add(barcodeScanner.process(invertedImage));
+          } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+          }
+        }
+      }
+
+      tasks.add(barcodeScanner.process(image));
 
       try {
-        List<Barcode> barcodes = Tasks.await(task);
+        ArrayList<Barcode> barcodes = new ArrayList<Barcode>();
+        for (Task<List<Barcode>> task : tasks) {
+          barcodes.addAll(Tasks.await(task));
+        }
 
         WritableNativeArray array = new WritableNativeArray();
         for (Barcode barcode : barcodes) {
@@ -185,6 +216,36 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
 
     return map;
   }
+
+  // Bitmap Inversion https://gist.github.com/moneytoo/87e3772c821cb1e86415
+  private Bitmap invert(Bitmap src)
+	{ 
+		int height = src.getHeight();
+		int width = src.getWidth();    
+
+		Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+		Canvas canvas = new Canvas(bitmap);
+		Paint paint = new Paint();
+		
+		ColorMatrix matrixGrayscale = new ColorMatrix();
+		matrixGrayscale.setSaturation(0);
+		
+		ColorMatrix matrixInvert = new ColorMatrix();
+		matrixInvert.set(new float[]
+		{
+			-1.0f, 0.0f, 0.0f, 0.0f, 255.0f,
+			0.0f, -1.0f, 0.0f, 0.0f, 255.0f,
+			0.0f, 0.0f, -1.0f, 0.0f, 255.0f,
+			0.0f, 0.0f, 0.0f, 1.0f, 0.0f
+		});
+		matrixInvert.preConcat(matrixGrayscale);
+		
+		ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrixInvert);
+		paint.setColorFilter(filter);
+		
+		canvas.drawBitmap(src, 0, 0, paint);
+		return bitmap;
+	}
 
   VisionCameraCodeScannerPlugin() {
     super("scanCodes");

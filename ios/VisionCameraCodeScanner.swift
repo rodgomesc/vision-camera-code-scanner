@@ -11,15 +11,34 @@ class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
     public static func callback(_ frame: Frame!, withArgs args: [Any]!) -> Any! {
         let image = VisionImage(buffer: frame.buffer)
         image.orientation = .up
+        
         var barCodeAttributes: [Any] = []
+        
         do {
             try self.createScanner(args)
-            let barcodes: [Barcode] = try barcodeScanner!.results(in: image)
+            var barcodes: [Barcode] = []
+            barcodes.append(contentsOf: try barcodeScanner!.results(in: image))
+            
+            if let options = args[1] as? [String: Any] {
+                let checkInverted = options["checkInverted"] as? Bool ?? false
+                if (checkInverted) {
+                    guard let buffer = CMSampleBufferGetImageBuffer(frame.buffer) else {
+                        return nil
+                    }
+                    let ciImage = CIImage(cvPixelBuffer: buffer)
+                    guard let invertedImage = invert(src: ciImage) else {
+                        return nil
+                    }
+                    barcodes.append(contentsOf: try barcodeScanner!.results(in: VisionImage.init(image: invertedImage)))
+                }
+            }
+            
             if (!barcodes.isEmpty){
                 for barcode in barcodes {
                     barCodeAttributes.append(self.convertBarcode(barcode: barcode))
                 }
             }
+            
         } catch _ {
             return nil
         }
@@ -89,5 +108,16 @@ class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
         map["content"] = self.convertContent(barcode: barcode)
         
         return map
+    }
+    
+    // CIImage Inversion Filter https://stackoverflow.com/a/42987565
+    static func invert(src: CIImage) -> UIImage? {
+        guard let filter = CIFilter(name: "CIColorInvert") else { return nil }
+        filter.setDefaults()
+        filter.setValue(src, forKey: kCIInputImageKey)
+        let context = CIContext(options: nil)
+        guard let outputImage = filter.outputImage else { return nil }
+        guard let outputImageCopy = context.createCGImage(outputImage, from: outputImage.extent) else { return nil }
+        return UIImage(cgImage: outputImageCopy, scale: 1, orientation: .up)
     }
 }
