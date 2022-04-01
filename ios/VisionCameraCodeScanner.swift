@@ -106,6 +106,7 @@ class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
         map["displayValue"] = barcode.displayValue
         map["rawValue"] = barcode.rawValue
         map["content"] = self.convertContent(barcode: barcode)
+        map["format"] = barcode.format.rawValue
         
         return map
     }
