@@ -1,19 +1,31 @@
 import * as React from 'react';
 
+import { runOnJS } from 'react-native-reanimated';
 import { StyleSheet, Text } from 'react-native';
-import { useCameraDevices } from 'react-native-vision-camera';
+import {
+  useCameraDevices,
+  useFrameProcessor,
+} from 'react-native-vision-camera';
 import { Camera } from 'react-native-vision-camera';
-import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner';
+import {
+  scanBarcodes,
+  BarcodeFormat,
+  Barcode,
+} from 'vision-camera-code-scanner';
 
 export default function App() {
   const [hasPermission, setHasPermission] = React.useState(false);
+  const [barcodes, setBarcodes] = React.useState<Barcode[]>([]);
   const devices = useCameraDevices();
   const device = devices.back;
 
-  const [frameProcessor, barcodes] = useScanBarcodes(
-    [BarcodeFormat.ALL_FORMATS],
-    { checkInverted: true }
-  );
+  const frameProcessor = useFrameProcessor((frame) => {
+    'worklet';
+    const data = scanBarcodes(frame, [BarcodeFormat.ALL_FORMATS], {
+      checkInverted: true,
+    });
+    runOnJS(setBarcodes)(data);
+  }, []);
 
   React.useEffect(() => {
     (async () => {
