@@ -16,7 +16,7 @@ module.exports = {
     [
       'react-native-reanimated/plugin',
       {
-        globals: ['__scanCodes'],
+        globals: ['__scanCodes', '__scanOCR'],
       },
     ],
   ],

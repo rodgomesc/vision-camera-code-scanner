@@ -12,6 +12,7 @@ import {
   BarcodeFormat,
   Barcode,
 } from 'vision-camera-code-scanner';
+import { scanOCR } from 'vision-camera-ocr';
 
 export default function App() {
   const [hasPermission, setHasPermission] = React.useState(false);
@@ -24,6 +25,10 @@ export default function App() {
     const data = scanBarcodes(frame, [BarcodeFormat.ALL_FORMATS], {
       checkInverted: true,
     });
+    const scannedOcr = scanOCR(frame);
+    if (scannedOcr) {
+      console.log(scannedOcr);
+    }
     runOnJS(setBarcodes)(data);
   }, []);
 

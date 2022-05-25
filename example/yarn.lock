@@ -4139,6 +4139,11 @@ vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
+vision-camera-ocr@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/vision-camera-ocr/-/vision-camera-ocr-1.0.0.tgz#f1ab41b10ed52533bca088139c698de2b6141f8b"
+  integrity sha512-CHk4D39RK6KGwVx76iObUhRk43h94sTeiBAsXp8BE2GbXVzZeY4vZxsR0w75Nw8nYv4/71aOF0XYuYHGv6uV7w==
+
 vlq@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/vlq/-/vlq-1.0.1.tgz#c003f6e7c0b4c1edd623fd6ee50bbc0d6a1de468"
