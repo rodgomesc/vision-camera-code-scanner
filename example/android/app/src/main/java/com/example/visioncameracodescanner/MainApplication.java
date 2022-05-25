@@ -11,6 +11,7 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import com.visioncameracodescanner.VisionCameraCodeScannerPluginPackage;
+import com.visioncameraocr.VisionCameraOcrPackage;
 
 import com.facebook.react.bridge.JSIModulePackage;
 import com.swmansion.reanimated.ReanimatedJSIModulePackage;
@@ -31,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
           // Packages that cannot be autolinked yet can be added manually here, for VisionCameraCodeScannerExample:
           // packages.add(new MyReactNativePackage());
           packages.add(new VisionCameraCodeScannerPluginPackage());
+          packages.add(new VisionCameraOcrPackage());
           return packages;
         }
 
