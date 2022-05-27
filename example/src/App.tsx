@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { runOnJS } from 'react-native-reanimated';
-import { StyleSheet, Text } from 'react-native';
+import { Button, StyleSheet, Text } from 'react-native';
 import {
   useCameraDevices,
   useFrameProcessor,
@@ -12,6 +12,33 @@ import {
   BarcodeFormat,
   Barcode,
 } from 'vision-camera-code-scanner';
+import {
+  ImagePickerResponse,
+  launchImageLibrary,
+} from 'react-native-image-picker';
+import MlkitOcr from 'react-native-mlkit-ocr';
+
+function launchGallery() {
+  launchImageLibrary(
+    {
+      mediaType: 'photo',
+    },
+    async (response: ImagePickerResponse) => {
+      console.log(response);
+      const uri = response?.assets?.[0].uri;
+      if (!uri) {
+        throw new Error('oh!');
+      }
+      try {
+        console.log(uri);
+        const result = await MlkitOcr.detectFromUri(uri);
+        console.log(result);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  );
+}
 
 export default function App() {
   const [hasPermission, setHasPermission] = React.useState(false);
@@ -35,7 +62,7 @@ export default function App() {
   }, []);
 
   React.useEffect(() => {
-    console.log(barcodes);
+    // console.log(barcodes);
   }, [barcodes]);
 
   return (
@@ -54,6 +81,7 @@ export default function App() {
             {barcode.displayValue}
           </Text>
         ))}
+        <Button onPress={launchGallery} title="Start" />
       </>
     )
   );

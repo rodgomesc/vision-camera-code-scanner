@@ -3350,6 +3350,16 @@ react-native-codegen@^0.0.7:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
+react-native-image-picker@^4.8.3:
+  version "4.8.3"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-4.8.3.tgz#a74801e8428325133a42dcd818fa54f08e6b20e6"
+  integrity sha512-mA3xKN8TtXpLl3Aoo65ArZvusv3gCsbe3/hsOLKI1DcC+QcYPcDnsYK/ft05rWBj4BdiJ9E2JoveiHNtU8W9GA==
+
+react-native-mlkit-ocr@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/react-native-mlkit-ocr/-/react-native-mlkit-ocr-0.2.5.tgz#0161e9d33508a68b938a5a37f027db18938cd57a"
+  integrity sha512-g8CTgGx5dT5pgnPDw1W33Oa9PZYg10nYd+KuHTjpbJdkqxfWXcoUl/A4vOsPJDz1UM06YnOu7XRSgSXSIAGhjA==
+
 react-native-reanimated@2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.4.1.tgz#4e33876fba525ce60ac13ab3c81fc3a9f8b132fe"
