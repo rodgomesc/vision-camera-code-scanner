@@ -24,7 +24,7 @@ import androidx.camera.core.ImageProxy;
 import com.google.android.gms.tasks.Tasks;
 import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
 import com.google.android.gms.tasks.Task;
-import com.google.mlkit.vision.barcode.Barcode;
+import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
