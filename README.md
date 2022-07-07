@@ -73,6 +73,7 @@ export default function App() {
           isActive={true}
           frameProcessor={frameProcessor}
           frameProcessorFps={5}
+          zoom={device?.neutralZoom ?? 1}
         />
         {barcodes.map((barcode, idx) => (
           <Text key={idx} style={styles.barcodeTextURL}>
