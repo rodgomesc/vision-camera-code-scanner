@@ -24,7 +24,7 @@ import androidx.camera.core.ImageProxy;
 import com.google.android.gms.tasks.Tasks;
 import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
 import com.google.android.gms.tasks.Task;
-import com.google.mlkit.vision.barcode.Barcode;
+import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
@@ -219,17 +219,17 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
 
   // Bitmap Inversion https://gist.github.com/moneytoo/87e3772c821cb1e86415
   private Bitmap invert(Bitmap src)
-	{ 
+	{
 		int height = src.getHeight();
-		int width = src.getWidth();    
+		int width = src.getWidth();
 
 		Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 		Canvas canvas = new Canvas(bitmap);
 		Paint paint = new Paint();
-		
+
 		ColorMatrix matrixGrayscale = new ColorMatrix();
 		matrixGrayscale.setSaturation(0);
-		
+
 		ColorMatrix matrixInvert = new ColorMatrix();
 		matrixInvert.set(new float[]
 		{
@@ -239,10 +239,10 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
 			0.0f, 0.0f, 0.0f, 1.0f, 0.0f
 		});
 		matrixInvert.preConcat(matrixGrayscale);
-		
+
 		ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrixInvert);
 		paint.setColorFilter(filter);
-		
+
 		canvas.drawBitmap(src, 0, 0, paint);
 		return bitmap;
 	}
