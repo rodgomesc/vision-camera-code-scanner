@@ -297,7 +297,7 @@ export interface CodeScannerOptions {
  * @param types Array of barcode types to detect (for optimal performance, use less types)
  * @returns Detected barcodes from MLKit
  */
-export function scanBarcodes(
+export function scanCodes(
   frame: Frame,
   types: BarcodeFormat[],
   options?: CodeScannerOptions
