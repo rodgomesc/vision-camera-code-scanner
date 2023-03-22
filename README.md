@@ -1,5 +1,3 @@
-## Forked from [https://github.com/jorgebrunetto/vision-camera-code-scanner](https://github.com/jorgebrunetto/vision-camera-code-scanner)
-
 # vision-camera-code-scanner
 
 VisionCamera Frame Processor Plugin to read barcodes using MLKit Vision Barcode Scanning
