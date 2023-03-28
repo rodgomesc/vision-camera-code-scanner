@@ -9,19 +9,22 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react": "17.0.2",
-    "react-native": "0.66.3",
-    "react-native-reanimated": "2.4.1",
+    "@shopify/react-native-skia": "0.1.175",
+    "react": "18.2.0",
+    "react-native": "0.71.3",
     "react-native-screens": "3.5.0",
-    "react-native-vision-camera": "^2.9.4"
+    "react-native-vision-camera": "https://github.com/mrousavy/react-native-vision-camera#af4e366312a2335535f80109e6bf0b3a977444f0",
+    "react-native-worklets": "https://github.com/chrfalch/react-native-worklets"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/runtime": "^7.15.3",
     "babel-plugin-module-resolver": "^4.1.0",
-    "metro-react-native-babel-preset": "^0.66.2"
+    "metro-react-native-babel-preset": "^0.66.2",
+    "string-hash-64": "^1.0.3"
   },
+  "packageManager": "yarn@3.5.0",
   "resolutions": {
-    "**/react-native-reanimated": "2.4.1"
+    "react-native-vision-camera": "patch:react-native-vision-camera@https%3A//github.com/mrousavy/react-native-vision-camera.git%23commit=af4e366312a2335535f80109e6bf0b3a977444f0#.yarn/patches/react-native-vision-camera-https-d0b6fc3f1c.patch"
   }
 }

@@ -1,4 +1,4 @@
-import type { Frame } from 'react-native-vision-camera';
+import { FrameProcessorPlugins, Frame } from 'react-native-vision-camera';
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.BarcodeFormat
@@ -304,8 +304,7 @@ export function scanBarcodes(
 ): Barcode[] {
   'worklet';
   // @ts-ignore
-  // eslint-disable-next-line no-undef
-  return __scanCodes(frame, types, options);
+  return FrameProcessorPlugins.scanCodes(frame, types, options);
 }
 
 export * from './hook';

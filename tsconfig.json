@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "react-native-vision-camera": ["node_modules/react-native-vision-camera/src"],
       "vision-camera-code-scanner": ["./src/index"]
     },
     "allowUnreachableCode": false,
@@ -10,6 +11,7 @@
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
+    "types": ["node"],
     "lib": ["esnext"],
     "module": "esnext",
     "moduleResolution": "node",
