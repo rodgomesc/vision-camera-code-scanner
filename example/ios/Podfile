@@ -38,9 +38,7 @@ target 'VisionCameraCodeScannerExample' do
 
   pre_install do |installer|
     installer.pod_targets.each do |pod|
-      # if pod.name.start_with?('Permission-') ||
-      if
-        [
+      if [
           # https://github.com/Shopify/react-native-skia/issues/652#issuecomment-1280278930 
           'react-native-skia/Api',
           'react-native-skia/Jsi',
