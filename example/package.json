@@ -11,9 +11,9 @@
   "dependencies": {
     "@shopify/react-native-skia": "0.1.175",
     "react": "18.2.0",
-    "react-native": "0.71.3",
+    "react-native": "0.71.7",
     "react-native-screens": "3.5.0",
-    "react-native-vision-camera": "https://github.com/mrousavy/react-native-vision-camera#af4e366312a2335535f80109e6bf0b3a977444f0",
+    "react-native-vision-camera": "https://github.com/mrousavy/react-native-vision-camera#bf52e8dad74d0d0794f7515028e32ab89ae82494",
     "react-native-worklets": "https://github.com/chrfalch/react-native-worklets"
   },
   "devDependencies": {
@@ -25,6 +25,7 @@
   },
   "packageManager": "yarn@3.5.0",
   "resolutions": {
-    "react-native-vision-camera": "patch:react-native-vision-camera@https%3A//github.com/mrousavy/react-native-vision-camera.git%23commit=af4e366312a2335535f80109e6bf0b3a977444f0#.yarn/patches/react-native-vision-camera-https-d0b6fc3f1c.patch"
+    "@shopify/react-native-skia@0.1.175": "patch:@shopify/react-native-skia@npm%3A0.1.175#./.yarn/patches/@shopify-react-native-skia-npm-0.1.175-d3b0de54d9.patch",
+    "react-native-vision-camera": "patch:react-native-vision-camera@https%3A//github.com/mrousavy/react-native-vision-camera.git%23commit=bf52e8dad74d0d0794f7515028e32ab89ae82494#./.yarn/patches/react-native-vision-camera-https-95cda75d0b.patch"
   }
 }

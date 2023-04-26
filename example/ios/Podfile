@@ -36,6 +36,25 @@ target 'VisionCameraCodeScannerExample' do
 
   pod 'VisionCameraCodeScanner', :path => '../..'
 
+  pre_install do |installer|
+    installer.pod_targets.each do |pod|
+      # if pod.name.start_with?('Permission-') ||
+      if
+        [
+          # https://github.com/Shopify/react-native-skia/issues/652#issuecomment-1280278930 
+          'react-native-skia/Api',
+          'react-native-skia/Jsi',
+          'react-native-skia/RNSkia',
+          'react-native-skia/SkiaHeaders',
+          'react-native-skia/Utils',
+          'react-native-skia',].include?(pod.name)
+        def pod.build_type
+          Pod::BuildType.static_library
+        end
+      end
+    end
+  end
+
   post_install do |installer|
     react_native_post_install(
       installer,
@@ -55,6 +74,5 @@ target 'VisionCameraCodeScannerExample' do
         end
       end
     end
-
   end
 end

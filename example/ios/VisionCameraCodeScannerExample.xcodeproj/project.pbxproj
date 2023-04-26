@@ -10,7 +10,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		206E2B91B9456B92A02D419F /* libPods-VisionCameraCodeScannerExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 584FE2A29F4CA81A5CA875B9 /* libPods-VisionCameraCodeScannerExample.a */; };
+		5B34D1D2A33633E18F1FDF98 /* Pods_VisionCameraCodeScannerExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06893DFCE3E3DFEDC3DD78DB /* Pods_VisionCameraCodeScannerExample.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -18,13 +18,13 @@
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* VisionCameraCodeScannerExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisionCameraCodeScannerExampleTests.m; sourceTree = "<group>"; };
+		06893DFCE3E3DFEDC3DD78DB /* Pods_VisionCameraCodeScannerExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VisionCameraCodeScannerExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* VisionCameraCodeScannerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionCameraCodeScannerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = VisionCameraCodeScannerExample/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = VisionCameraCodeScannerExample/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = VisionCameraCodeScannerExample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = VisionCameraCodeScannerExample/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = VisionCameraCodeScannerExample/main.m; sourceTree = "<group>"; };
-		584FE2A29F4CA81A5CA875B9 /* libPods-VisionCameraCodeScannerExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VisionCameraCodeScannerExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E8BF8629A8F1B5B026BE36 /* Pods-VisionCameraCodeScannerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisionCameraCodeScannerExample.release.xcconfig"; path = "Target Support Files/Pods-VisionCameraCodeScannerExample/Pods-VisionCameraCodeScannerExample.release.xcconfig"; sourceTree = "<group>"; };
 		78B3E7E4FE93199742CCD147 /* Pods-VisionCameraCodeScannerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisionCameraCodeScannerExample.debug.xcconfig"; path = "Target Support Files/Pods-VisionCameraCodeScannerExample/Pods-VisionCameraCodeScannerExample.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = VisionCameraCodeScannerExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				206E2B91B9456B92A02D419F /* libPods-VisionCameraCodeScannerExample.a in Frameworks */,
+				5B34D1D2A33633E18F1FDF98 /* Pods_VisionCameraCodeScannerExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +80,7 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				584FE2A29F4CA81A5CA875B9 /* libPods-VisionCameraCodeScannerExample.a */,
+				06893DFCE3E3DFEDC3DD78DB /* Pods_VisionCameraCodeScannerExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
