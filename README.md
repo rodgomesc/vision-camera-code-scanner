@@ -1,6 +1,6 @@
 # vision-camera-code-scanner
 
-VisionCamera Frame Processor Plugin to read barcodes using MLKit Vision Barcode Scanning
+VisionCamera Frame Processor Plugin to read barcodes using MLKit Vision Barcode Scanning.
 
 ## Installation
 
