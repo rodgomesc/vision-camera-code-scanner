@@ -233,6 +233,7 @@
 				PRODUCT_NAME = VisionCameraCodeScanner;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "VisionCameraCodeScanner-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "VisionCameraCodeScanner-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -252,6 +253,7 @@
 				PRODUCT_NAME = VisionCameraCodeScanner;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "VisionCameraCodeScanner-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "VisionCameraCodeScanner-Swift.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
