@@ -8,11 +8,12 @@ export function useScanBarcodes(
   options?: CodeScannerOptions
 ): [(frame: Frame) => void, Barcode[]] {
   const [barcodes, setBarcodes] = useState<Barcode[]>([]);
+  const setBarcodesJS = Worklets.createRunInJsFn(setBarcodes);
 
   const frameProcessor = useFrameProcessor((frame) => {
     'worklet';
     const detectedBarcodes = scanBarcodes(frame, types, options);
-    Worklets.createRunInJsFn(setBarcodes)(detectedBarcodes);
+    setBarcodesJS(detectedBarcodes);
   }, []);
 
   return [frameProcessor, barcodes];

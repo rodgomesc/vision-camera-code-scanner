@@ -45,10 +45,15 @@ export default function App() {
 
   // Alternatively you can use the underlying function:
   //
+  // const [barcodes, setBarcodes] = React.useState<Barcode[]>([]);
+  // const setBarcodesJS = Worklets.createRunInJsFn(setBarcodes);
+  //
   // const frameProcessor = useFrameProcessor((frame) => {
   //   'worklet';
-  //   const detectedBarcodes = scanBarcodes(frame, [BarcodeFormat.QR_CODE], { checkInverted: true });
-  //   Worklets.createRunInJsFn(setBarcodes)(detectedBarcodes);
+  //   const detectedBarcodes = scanBarcodes(frame, [BarcodeFormat.ALL_FORMATS], {
+  //     checkInverted: true,
+  //   });
+  //   setBarcodesJS(detectedBarcodes);
   // }, []);
 
   React.useEffect(() => {
