@@ -12,7 +12,11 @@ export function useScanBarcodes(
 
   const frameProcessor = useFrameProcessor((frame) => {
     'worklet';
-    const detectedBarcodes = scanBarcodes(frame, types, options);
+    let recreatedTypes: BarcodeFormat[] = [];
+    types.map((type: BarcodeFormat) => {
+      recreatedTypes.push(type);
+    });
+    const detectedBarcodes = scanBarcodes(frame, recreatedTypes, options);
     setBarcodesJS(detectedBarcodes);
   }, []);
 
