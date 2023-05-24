@@ -320,32 +320,7 @@ PODS:
   - React-jsinspector (0.71.7)
   - React-logger (0.71.7):
     - glog
-  - react-native-skia (0.1.175):
-    - React
-    - React-callinvoker
-    - React-Core
-    - react-native-skia/Api (= 0.1.175)
-    - react-native-skia/Jsi (= 0.1.175)
-    - react-native-skia/RNSkia (= 0.1.175)
-    - react-native-skia/SkiaHeaders (= 0.1.175)
-    - react-native-skia/Utils (= 0.1.175)
-  - react-native-skia/Api (0.1.175):
-    - React
-    - React-callinvoker
-    - React-Core
-  - react-native-skia/Jsi (0.1.175):
-    - React
-    - React-callinvoker
-    - React-Core
-  - react-native-skia/RNSkia (0.1.175):
-    - React
-    - React-callinvoker
-    - React-Core
-  - react-native-skia/SkiaHeaders (0.1.175):
-    - React
-    - React-callinvoker
-    - React-Core
-  - react-native-skia/Utils (0.1.175):
+  - react-native-skia (0.1.186):
     - React
     - React-callinvoker
     - React-Core
@@ -437,7 +412,7 @@ PODS:
     - React-jsi (= 0.71.7)
     - React-logger (= 0.71.7)
     - React-perflogger (= 0.71.7)
-  - RNScreens (3.5.0):
+  - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
   - VisionCamera (3.0.0-rc.2):
@@ -627,7 +602,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: eaa5f71eb8f6861cf0e57f1a0f52aeb020d9e18e
   React-jsinspector: 9885f6f94d231b95a739ef7bb50536fb87ce7539
   React-logger: 3f8ebad1be1bf3299d1ab6d7f971802d7395c7ef
-  react-native-skia: 51f4a6586c362814f677df4ac4226f13c634bcfa
+  react-native-skia: 93857be5661fc3d81abcd3e7cb357a6662275778
   react-native-worklets: c7576ad4ad0f030ff41e8d74ad0077c96054a6c1
   React-perflogger: 2d505bbe298e3b7bacdd9e542b15535be07220f6
   React-RCTActionSheet: 0e96e4560bd733c9b37efbf68f5b1a47615892fb
@@ -641,12 +616,12 @@ SPEC CHECKSUMS:
   React-RCTText: 33c85753bd714d527d2ae538dc56ec24c6783d84
   React-RCTVibration: 08f132cad9896458776f37c112e71d60aef1c6ae
   React-runtimeexecutor: c5c89f8f543842dd864b63ded1b0bbb9c9445328
-  ReactCommon: 5307873a227ee34ddd3e7f2ec1086ebbfccc7618
-  RNScreens: 01ab149b5dd5c27f5ff26741b1d2bdf2cee1af35
-  VisionCamera: 6258234abb548d5703433fa2cab5844788633bed
-  VisionCameraCodeScanner: 71d5c3f689e0002e2cee62158ba5f3a486ddf0af
+  ReactCommon: dbfbe2f7f3c5ce4ce44f43f2fd0d5950d1eb67c5
+  RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
+  VisionCamera: 6c45419d76b6538708faa08c8232ccffa9b73d33
+  VisionCameraCodeScanner: d5db4e917a0ebcb91279a423582b6a67a52dfd89
   Yoga: d56980c8914db0b51692f55533409e844b66133c
 
-PODFILE CHECKSUM: 48e8a782d01e7fbe0649371f1f04a3ebb5d5f10b
+PODFILE CHECKSUM: 469f13170ae68ca760aa0ab13dac8afbbbd4420b
 
 COCOAPODS: 1.11.3

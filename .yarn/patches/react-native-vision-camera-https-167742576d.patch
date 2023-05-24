@@ -1,0 +1,27 @@
+diff --git a/VisionCamera.h b/VisionCamera.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/VisionCamera.podspec b/VisionCamera.podspec
+index 215e3105dfed3f120b701fc7552ebfbd49377e36..684c8315b9512856baf1993acc8f28f8d374caef 100644
+--- a/VisionCamera.podspec
++++ b/VisionCamera.podspec
+@@ -48,6 +48,7 @@ Pod::Spec.new do |s|
+   # All source files that should be publicly visible
+   # Note how this does not include headers, since those can nameclash.
+   s.source_files = [
++    "VisionCamera.h",
+     "ios/**/*.{m,mm,swift}",
+     "ios/CameraBridge.h",
+     "ios/Skia Render Layer/PreviewSkiaView.h",
+diff --git a/src/CameraDevice.ts b/src/CameraDevice.ts
+index 2e2c76633e769a5df019e61898aaf80c5b4ae1da..6d6780373671bed98d2f64fb2b0bc352d54969bf 100644
+--- a/src/CameraDevice.ts
++++ b/src/CameraDevice.ts
+@@ -27,7 +27,6 @@ export const parsePhysicalDeviceTypes = (
+   physicalDeviceTypes: PhysicalCameraDeviceType[],
+ ): PhysicalCameraDeviceType | LogicalCameraDeviceType => {
+   if (physicalDeviceTypes.length === 1) {
+-    // @ts-expect-error for very obvious reasons
+     return physicalDeviceTypes[0];
+   }
+ 

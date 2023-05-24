@@ -50,7 +50,7 @@
     "@commitlint/config-conventional": "^17.4.4",
     "@react-native-community/eslint-config": "^3.2.0",
     "@release-it/conventional-changelog": "^5.1.1",
-    "@shopify/react-native-skia": "0.1.175",
+    "@shopify/react-native-skia": "0.1.186",
     "@tsconfig/react-native": "^2.0.2",
     "@types/jest": "^29.5.0",
     "@types/react": "^18.0.27",
@@ -66,7 +66,7 @@
     "react": "^18.2.0",
     "react-native": "^0.71.7",
     "react-native-builder-bob": "^0.20.4",
-    "react-native-vision-camera": "https://github.com/mrousavy/react-native-vision-camera#bf52e8dad74d0d0794f7515028e32ab89ae82494",
+    "react-native-vision-camera": "https://github.com/mrousavy/react-native-vision-camera#820db3ca9e646a611b54f55c402ea9cbf022b7f3",
     "react-native-worklets": "https://github.com/chrfalch/react-native-worklets",
     "release-it": "^15.6.0",
     "typescript": "^4.9.5"
@@ -136,7 +136,6 @@
   },
   "packageManager": "yarn@3.5.0",
   "resolutions": {
-    "@shopify/react-native-skia@0.1.175": "patch:@shopify/react-native-skia@npm%3A0.1.175#./.yarn/patches/@shopify-react-native-skia-npm-0.1.175-d3b0de54d9.patch",
-    "react-native-vision-camera": "patch:react-native-vision-camera@https%3A//github.com/mrousavy/react-native-vision-camera.git%23commit=bf52e8dad74d0d0794f7515028e32ab89ae82494#.yarn/patches/react-native-vision-camera-https-95cda75d0b.patch"
+    "react-native-vision-camera": "patch:react-native-vision-camera@https%3A//github.com/mrousavy/react-native-vision-camera.git%23commit=820db3ca9e646a611b54f55c402ea9cbf022b7f3#./.yarn/patches/react-native-vision-camera-https-167742576d.patch"
   }
 }
