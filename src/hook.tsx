@@ -17,7 +17,13 @@ export function useScanBarcodes(
 
   const frameProcessor = useFrameProcessor((frame) => {
     'worklet';
-    const detectedBarcodes = scanBarcodes(frame, Array.from(types), options);
+    const opts = Object.keys(options || {}).reduce((acc, key) => {
+      acc[key as keyof CodeScannerOptions] = (options || {})[
+        key as keyof CodeScannerOptions
+      ];
+      return acc;
+    }, {} as CodeScannerOptions);
+    const detectedBarcodes = scanBarcodes(frame, Array.from(types), opts);
     setBarcodesJS(detectedBarcodes);
   }, []);
 
