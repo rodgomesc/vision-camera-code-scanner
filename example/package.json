@@ -14,7 +14,7 @@
     "react-native": "0.71.7",
     "react-native-screens": "^3.20.0",
     "react-native-vision-camera": "https://github.com/mrousavy/react-native-vision-camera#820db3ca9e646a611b54f55c402ea9cbf022b7f3",
-    "react-native-worklets": "https://github.com/chrfalch/react-native-worklets#d62d76c20ed7a3bbfebe5623bc976e5c2d9beabd"
+    "react-native-worklets": "https://github.com/chrfalch/react-native-worklets#10abdf160ec0373e51138ed409ce021464c2c6fe"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

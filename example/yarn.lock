@@ -5293,13 +5293,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-worklets@https://github.com/chrfalch/react-native-worklets#d62d76c20ed7a3bbfebe5623bc976e5c2d9beabd":
+"react-native-worklets@https://github.com/chrfalch/react-native-worklets#10abdf160ec0373e51138ed409ce021464c2c6fe":
   version: 0.1.0
-  resolution: "react-native-worklets@https://github.com/chrfalch/react-native-worklets.git#commit=d62d76c20ed7a3bbfebe5623bc976e5c2d9beabd"
+  resolution: "react-native-worklets@https://github.com/chrfalch/react-native-worklets.git#commit=10abdf160ec0373e51138ed409ce021464c2c6fe"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: eec7a097236e5ff5b84c590c4eaaf80a58cbc63be1378fe639c63abea84252f451eb2c056c8d44fa961c70a818f39906edbe0be64fa75d9c3aa80e399b9e1262
+  checksum: 05755cb5adbc5d011647482935d828d7c344fb72fcff297f5145d62aa1f80444eb881510c8c0088be73aab23922c8b5e6353229c6d3890671e625aa99d7435d1
   languageName: node
   linkType: hard
 
@@ -6448,7 +6448,7 @@ __metadata:
     react-native: 0.71.7
     react-native-screens: ^3.20.0
     react-native-vision-camera: "https://github.com/mrousavy/react-native-vision-camera#820db3ca9e646a611b54f55c402ea9cbf022b7f3"
-    react-native-worklets: "https://github.com/chrfalch/react-native-worklets#d62d76c20ed7a3bbfebe5623bc976e5c2d9beabd"
+    react-native-worklets: "https://github.com/chrfalch/react-native-worklets#10abdf160ec0373e51138ed409ce021464c2c6fe"
     string-hash-64: ^1.0.3
   languageName: unknown
   linkType: soft
