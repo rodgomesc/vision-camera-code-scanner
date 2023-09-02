@@ -1,15 +1,22 @@
-package com.example.visioncameracodescanner;
+package com.visioncameracodescanner;
 
 import android.app.Application;
+
+import androidx.annotation.Nullable;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
-import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
+import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
+import com.facebook.react.defaults.DefaultReactNativeHost;
+
+import com.visioncameracodescanner.VisionCameraCodeScannerPlugin;
 import com.visioncameracodescanner.VisionCameraCodeScannerPluginPackage;
+import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
+import com.mrousavy.camera.frameprocessor.FrameProcessorPluginRegistry;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -59,5 +66,7 @@ public class MainApplication extends Application implements ReactApplication {
       // If you opted-in for the New Architecture, we load the native entry point for this app.
       DefaultNewArchitectureEntryPoint.load();
     }
+
+    FrameProcessorPluginRegistry.addFrameProcessorPlugin("scanCodes", options -> new VisionCameraCodeScannerPlugin());
   }
 }

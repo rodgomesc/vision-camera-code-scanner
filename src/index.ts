@@ -1,4 +1,4 @@
-import { FrameProcessorPlugins, Frame } from 'react-native-vision-camera';
+import { VisionCameraProxy, Frame } from 'react-native-vision-camera';
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.BarcodeFormat
@@ -52,15 +52,15 @@ export enum AddressType {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Address
  */
-export interface Address {
+export type Address = {
   addressLines?: string[];
   type?: AddressType;
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.PersonName
  */
-export interface PersonName {
+export type PersonName = {
   first?: string;
   formattedName?: string;
   last?: string;
@@ -68,12 +68,12 @@ export interface PersonName {
   prefix?: string;
   pronunciation?: string;
   suffix?: string;
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.ContactInfo
  */
-export interface ContactInfo {
+export type ContactInfo = {
   addresses?: Address[];
   emails?: Email[];
   name?: PersonName;
@@ -81,7 +81,7 @@ export interface ContactInfo {
   phones?: Phone[];
   title?: string;
   urls?: string[];
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Email.FormatType
@@ -95,12 +95,12 @@ export enum EmailType {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Email
  */
-export interface Email {
+export type Email = {
   address?: string;
   body?: string;
   subject?: string;
   type?: EmailType;
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Phone.FormatType
@@ -116,26 +116,26 @@ export enum PhoneType {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Phone
  */
-export interface Phone {
+export type Phone = {
   number?: string;
   type?: PhoneType;
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.Sms
  */
-export interface Sms {
+export type Sms = {
   message?: string;
   phoneNumber?: string;
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.UrlBookmark
  */
-export interface UrlBookmark {
+export type UrlBookmark = {
   title?: string;
   url?: string;
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.WiFi.EncryptionType
@@ -149,24 +149,24 @@ export enum EncryptionType {
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.WiFi
  */
-export interface Wifi {
+export type Wifi = {
   encryptionType?: EncryptionType;
   password?: string;
   ssid?: string;
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.GeoPoint
  */
-export interface GeoPoint {
+export type GeoPoint = {
   lat?: number;
   lng?: number;
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.CalendarDateTime
  */
-export interface Date {
+export type Date = {
   day: number;
   hours: number;
   minutes: number;
@@ -175,12 +175,12 @@ export interface Date {
   seconds: number;
   year: number;
   isUtc: boolean;
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.CalendarEvent
  */
-export interface CalendarEvent {
+export type CalendarEvent = {
   description?: string;
   end?: Date;
   location?: string;
@@ -188,12 +188,12 @@ export interface CalendarEvent {
   start?: Date;
   status?: string;
   summary?: string;
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.DriverLicense
  */
-export interface DriverLicense {
+export type DriverLicense = {
   addressCity?: string;
   addressState?: string;
   addressStreet?: string;
@@ -208,25 +208,25 @@ export interface DriverLicense {
   lastName?: string;
   licenseNumber?: string;
   middleName?: string;
-}
+};
 
 /**
  * @see https://developer.android.com/reference/android/graphics/Rect.html
  */
-export interface Rect {
+export type Rect = {
   bottom: number;
   left: number;
   right: number;
   top: number;
-}
+};
 
 /**
  * @see https://developer.android.com/reference/android/graphics/Point.html
  */
-export interface Point {
+export type Point = {
   x: number;
   y: number;
-}
+};
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode
@@ -283,12 +283,19 @@ export type Barcode = {
       };
 };
 
-export interface CodeScannerOptions {
+export type CodeScannerOptions = {
   /**
    * checkInverted: `Allows you to also scan white barcode with black backgrounds`
    */
-  checkInverted?: boolean;
-}
+  checkInverted: boolean;
+};
+
+export const DefaultCodeScannerOptions = {
+  checkInverted: false,
+};
+
+const plugin =
+  VisionCameraProxy.getFrameProcessorPlugin<Barcode[]>('scanCodes');
 
 /**
  * Scans barcodes in the passed frame with MLKit
@@ -300,11 +307,17 @@ export interface CodeScannerOptions {
 export function scanBarcodes(
   frame: Frame,
   types: BarcodeFormat[],
-  options?: CodeScannerOptions
+  options: CodeScannerOptions = DefaultCodeScannerOptions
 ): Barcode[] {
   'worklet';
-  // @ts-ignore
-  return FrameProcessorPlugins.scanCodes(frame, types, options);
+
+  if (plugin == null)
+    throw new Error('Failed to load Frame Processor Plugin "scanCodes"!');
+
+  return plugin.call(frame, {
+    ...options,
+    types,
+  });
 }
 
 export * from './hook';

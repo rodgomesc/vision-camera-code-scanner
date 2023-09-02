@@ -1,17 +1,18 @@
-import { Frame, useFrameProcessor } from 'react-native-vision-camera';
+import { FrameProcessor, useFrameProcessor } from 'react-native-vision-camera';
 import { useState } from 'react';
 
 import {
   Barcode,
   BarcodeFormat,
   CodeScannerOptions,
+  DefaultCodeScannerOptions,
   scanBarcodes,
 } from './index';
 
 export function useScanBarcodes(
   types: BarcodeFormat[],
-  options?: CodeScannerOptions
-): [(frame: Frame) => void, Barcode[]] {
+  options: CodeScannerOptions = DefaultCodeScannerOptions
+): [FrameProcessor, Barcode[]] {
   const [barcodes, setBarcodes] = useState<Barcode[]>([]);
   const setBarcodesJS = Worklets.createRunInJsFn(setBarcodes);
 

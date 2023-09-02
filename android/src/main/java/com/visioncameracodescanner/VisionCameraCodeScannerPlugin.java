@@ -14,15 +14,15 @@ import android.graphics.Rect;
 import android.media.Image;
 
 import com.facebook.react.bridge.ReadableNativeArray;
-import com.facebook.react.bridge.ReadableNativeMap;
-import com.facebook.react.bridge.WritableNativeArray;
-import com.facebook.react.bridge.WritableNativeMap;
+
+import com.mrousavy.camera.frameprocessor.Frame;
+import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
+import com.mrousavy.camera.parsers.Orientation;
 
 import androidx.annotation.NonNull;
-import androidx.camera.core.ImageProxy;
+import org.jetbrains.annotations.Nullable;
 
 import com.google.android.gms.tasks.Tasks;
-import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.barcode.Barcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
@@ -34,8 +34,10 @@ import com.google.mlkit.vision.common.internal.ImageConvertUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.Map;
 
 public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
   private BarcodeScanner barcodeScanner = null;
@@ -60,18 +62,17 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
   ));
 
   @Override
-  public Object callback(ImageProxy frame, Object[] params) {
+  public Object callback(@NonNull Frame frame, @Nullable Map<String, Object> params) {
     createBarcodeInstance(params);
 
     @SuppressLint("UnsafeOptInUsageError")
     Image mediaImage = frame.getImage();
     if (mediaImage != null) {
       ArrayList<Task<List<Barcode>>> tasks = new ArrayList<Task<List<Barcode>>>();
-      InputImage image = InputImage.fromMediaImage(mediaImage, frame.getImageInfo().getRotationDegrees());
+      InputImage image = InputImage.fromMediaImage(mediaImage, Orientation.valueOf(frame.getOrientation()).toDegrees());
 
-      if (params[1] instanceof ReadableNativeMap) {
-        ReadableNativeMap scannerOptions = (ReadableNativeMap) params[1];
-        boolean checkInverted = scannerOptions.getBoolean("checkInverted");
+      if (params != null && params.containsKey("checkInverted")) {
+        boolean checkInverted = (Boolean) params.get("checkInverted");
 
         if (checkInverted) {
           Bitmap bitmap = null;
@@ -95,9 +96,9 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
           barcodes.addAll(Tasks.await(task));
         }
 
-        WritableNativeArray array = new WritableNativeArray();
+        List<Object> array = new ArrayList<>();
         for (Barcode barcode : barcodes) {
-          array.pushMap(convertBarcode(barcode));
+          array.add(convertBarcode(barcode));
         }
         return array;
       } catch (Exception e) {
@@ -107,9 +108,9 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
     return null;
   }
 
-  private void createBarcodeInstance(Object[] params) {
-    if (params[0] instanceof ReadableNativeArray) {
-      ReadableNativeArray rawFormats = (ReadableNativeArray) params[0];
+  private void createBarcodeInstance(@Nullable Map<String, Object> params) {
+    if (params != null && params.containsKey("types") && params.get("types") instanceof ReadableNativeArray) {
+      ReadableNativeArray rawFormats = (ReadableNativeArray) params.get("types");
 
       int formatsBitmap = 0;
       int formatsIndex = 0;
@@ -144,75 +145,75 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
     }
   }
 
-  private WritableNativeMap convertContent(@NonNull Barcode barcode) {
-    WritableNativeMap map = new WritableNativeMap();
+  private Map<String, Object> convertContent(@NonNull Barcode barcode) {
+    Map<String, Object> map = new HashMap<>();
 
     int type = barcode.getValueType();
-    map.putInt("type", type);
+    map.put("type", type);
 
     switch (type) {
       case Barcode.TYPE_UNKNOWN:
       case Barcode.TYPE_ISBN:
       case Barcode.TYPE_TEXT:
-        map.putString("data", barcode.getRawValue());
+        map.put("data", barcode.getRawValue());
         break;
       case Barcode.TYPE_CONTACT_INFO:
-        map.putMap("data", convertToMap(barcode.getContactInfo()));
+        map.put("data", convertToMap(barcode.getContactInfo()));
         break;
       case Barcode.TYPE_EMAIL:
-        map.putMap("data", convertToMap(barcode.getEmail()));
+        map.put("data", convertToMap(barcode.getEmail()));
         break;
       case Barcode.TYPE_PHONE:
-        map.putMap("data", convertToMap(barcode.getPhone()));
+        map.put("data", convertToMap(barcode.getPhone()));
         break;
       case Barcode.TYPE_SMS:
-        map.putMap("data", convertToMap(barcode.getSms()));
+        map.put("data", convertToMap(barcode.getSms()));
         break;
       case Barcode.TYPE_URL:
-        map.putMap("data", convertToMap(barcode.getUrl()));
+        map.put("data", convertToMap(barcode.getUrl()));
         break;
       case Barcode.TYPE_WIFI:
-        map.putMap("data", convertToMap(barcode.getWifi()));
+        map.put("data", convertToMap(barcode.getWifi()));
         break;
       case Barcode.TYPE_GEO:
-        map.putMap("data", convertToMap(barcode.getGeoPoint()));
+        map.put("data", convertToMap(barcode.getGeoPoint()));
         break;
       case Barcode.TYPE_CALENDAR_EVENT:
-        map.putMap("data", convertToMap(barcode.getCalendarEvent()));
+        map.put("data", convertToMap(barcode.getCalendarEvent()));
         break;
       case Barcode.TYPE_DRIVER_LICENSE:
-        map.putMap("data", convertToMap(barcode.getDriverLicense()));
+        map.put("data", convertToMap(barcode.getDriverLicense()));
         break;
     }
 
     return map;
   }
 
-  private WritableNativeMap convertBarcode(@NonNull Barcode barcode) {
-    WritableNativeMap map = new WritableNativeMap();
+  private Map<String, Object> convertBarcode(@NonNull Barcode barcode) {
+    Map<String, Object> map = new HashMap<>();
 
     Rect boundingBox = barcode.getBoundingBox();
     if (boundingBox != null) {
-      map.putMap("boundingBox", convertToMap(boundingBox));
+      map.put("boundingBox", convertToMap(boundingBox));
     }
 
     Point[] cornerPoints = barcode.getCornerPoints();
     if (cornerPoints != null) {
-      map.putArray("cornerPoints", convertToArray(cornerPoints));
+      map.put("cornerPoints", convertToArray(cornerPoints));
     }
 
     String displayValue = barcode.getDisplayValue();
     if (displayValue != null) {
-      map.putString("displayValue", displayValue);
+      map.put("displayValue", displayValue);
     }
 
     String rawValue = barcode.getRawValue();
     if (rawValue != null) {
-      map.putString("rawValue", rawValue);
+      map.put("rawValue", rawValue);
     }
 
-    map.putMap("content", convertContent(barcode));
-    map.putInt("format", barcode.getFormat());
+    map.put("content", convertContent(barcode));
+    map.put("format", barcode.getFormat());
 
     return map;
   }
@@ -248,6 +249,6 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
 	}
 
   VisionCameraCodeScannerPlugin() {
-    super("scanCodes");
+
   }
 }

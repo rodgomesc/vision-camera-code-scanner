@@ -6,17 +6,17 @@ import { BarcodeFormat, useScanBarcodes } from 'vision-camera-code-scanner';
 
 export default function App() {
   const [hasPermission, setHasPermission] = React.useState(false);
-  const [frameProcessor, barcodes] = useScanBarcodes(
-    [BarcodeFormat.ALL_FORMATS],
-    { checkInverted: true }
-  );
+  const [frameProcessor, barcodes] = useScanBarcodes([
+    BarcodeFormat.ALL_FORMATS,
+    BarcodeFormat.QR_CODE,
+  ]);
   const devices = useCameraDevices();
   const device = devices.back;
 
   React.useEffect(() => {
     (async () => {
       const status = await Camera.requestCameraPermission();
-      setHasPermission(status === 'authorized');
+      setHasPermission(status === 'granted');
     })();
   }, []);
 

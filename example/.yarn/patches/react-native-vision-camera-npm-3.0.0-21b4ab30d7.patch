@@ -1,0 +1,47 @@
+diff --git a/ios/Frame Processor/FrameProcessorPluginHostObject.mm b/ios/Frame Processor/FrameProcessorPluginHostObject.mm
+index c21e7765da1205264063650f84e86a4a45f9f263..8fb580472bd391b9b02685e83c55af2920125445 100644
+--- a/ios/Frame Processor/FrameProcessorPluginHostObject.mm	
++++ b/ios/Frame Processor/FrameProcessorPluginHostObject.mm	
+@@ -39,7 +39,7 @@
+           }
+ 
+           // Call actual Frame Processor Plugin
+-          id result = [_plugin callback:frame withArguments:nil];
++          id result = [_plugin callback:frame withArguments:options];
+ 
+           // Convert result value to jsi::Value (possibly undefined)
+           return JSINSObjectConversion::convertObjCObjectToJSIValue(runtime, result);
+diff --git a/src/FrameProcessorPlugins.ts b/src/FrameProcessorPlugins.ts
+index cb5366f5cbebb6472b77b4450c50f9ca8e965ef2..d49f709e26a8e7970501826f0ca86f70e44b0628 100644
+--- a/src/FrameProcessorPlugins.ts
++++ b/src/FrameProcessorPlugins.ts
+@@ -7,17 +7,16 @@ import type TWorklets from 'react-native-worklets-core';
+ import { CameraModule } from './NativeCameraModule';
+ import { assertJSIAvailable } from './JSIHelper';
+ 
+-type BasicParameterType = string | number | boolean | undefined;
+-type ParameterType = BasicParameterType | BasicParameterType[] | Record<string, BasicParameterType | undefined>;
++type ParameterType = string | number | boolean | undefined | ParameterType[] | { [key: string]: ParameterType };
+ 
+-interface FrameProcessorPlugin {
++interface FrameProcessorPlugin<T extends ParameterType> {
+   /**
+    * Call the native Frame Processor Plugin with the given Frame and options.
+    * @param frame The Frame from the Frame Processor.
+    * @param options (optional) Additional options. Options will be converted to a native dictionary
+    * @returns (optional) A value returned from the native Frame Processor Plugin (or undefined)
+    */
+-  call: (frame: Frame, options?: Record<string, ParameterType>) => ParameterType;
++  call: (frame: Frame, options?: Record<string, ParameterType>) => T;
+ }
+ 
+ interface TVisionCameraProxy {
+@@ -27,7 +26,7 @@ interface TVisionCameraProxy {
+    * Creates a new instance of a Frame Processor Plugin.
+    * The Plugin has to be registered on the native side, otherwise this returns `undefined`
+    */
+-  getFrameProcessorPlugin: (name: string) => FrameProcessorPlugin | undefined;
++  getFrameProcessorPlugin: <T extends ParameterType>(name: string) => FrameProcessorPlugin<T> | undefined;
+ }
+ 
+ let hasWorklets = false;

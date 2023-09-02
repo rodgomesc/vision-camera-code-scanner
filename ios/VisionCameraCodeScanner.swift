@@ -7,11 +7,11 @@ public class VisionCameraCodeScanner: FrameProcessorPlugin {
     var barcodeScanner: BarcodeScanner?
     var barcodeFormatOptionSet: BarcodeFormat = []
     
-    override public func name() -> String! {
-        return "scanCodes"
+    class func newInstance() -> VisionCameraCodeScanner {
+        return VisionCameraCodeScanner()
     }
     
-    public override func callback(_ frame: Frame!, withArguments arguments: [Any]!) -> Any! {
+    public override func callback(_ frame: Frame, withArguments arguments: [AnyHashable: Any]?) -> Any? {
         let image = VisionImage(buffer: frame.buffer)
         image.orientation = .up
         
@@ -22,8 +22,8 @@ public class VisionCameraCodeScanner: FrameProcessorPlugin {
             var barcodes: [Barcode] = []
             barcodes.append(contentsOf: try barcodeScanner!.results(in: image))
             
-            if let options = arguments[1] as? [String: Any] {
-                let checkInverted = options["checkInverted"] as? Bool ?? false
+            if let unwrappedArgs = arguments {
+                let checkInverted = unwrappedArgs["checkInverted"] as? Bool ?? false
                 if (checkInverted) {
                     guard let buffer = CMSampleBufferGetImageBuffer(frame.buffer) else {
                         return nil
@@ -49,8 +49,11 @@ public class VisionCameraCodeScanner: FrameProcessorPlugin {
         return barCodeAttributes
     }
     
-    func createScanner(_ args: [Any]!) throws {
-        guard let rawFormats = args[0] as? [Int] else {
+    func createScanner(_ args: [AnyHashable: Any]?) throws {
+        guard let unwrappedArgs = args else {
+            throw BarcodeError.noBarcodeFormatProvided
+        }
+        guard let rawFormats = unwrappedArgs["types"] as? [Int] else {
             throw BarcodeError.noBarcodeFormatProvided
         }
         var formatOptionSet: BarcodeFormat = []
