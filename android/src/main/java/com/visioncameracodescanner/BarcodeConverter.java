@@ -5,7 +5,7 @@ import android.graphics.Rect;
 
 import androidx.annotation.NonNull;
 
-import com.google.mlkit.vision.barcode.Barcode;
+import com.google.mlkit.vision.barcode.common.Barcode;
 
 import java.util.ArrayList;
 import java.util.HashMap;

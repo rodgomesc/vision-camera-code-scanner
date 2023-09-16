@@ -13,8 +13,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.Image;
 
-import com.facebook.react.bridge.ReadableNativeArray;
-
 import com.mrousavy.camera.frameprocessor.Frame;
 import com.mrousavy.camera.frameprocessor.FrameProcessorPlugin;
 import com.mrousavy.camera.parsers.Orientation;
@@ -24,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.android.gms.tasks.Tasks;
 import com.google.android.gms.tasks.Task;
-import com.google.mlkit.vision.barcode.Barcode;
+import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
@@ -69,7 +67,7 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
     Image mediaImage = frame.getImage();
     if (mediaImage != null) {
       ArrayList<Task<List<Barcode>>> tasks = new ArrayList<Task<List<Barcode>>>();
-      InputImage image = InputImage.fromMediaImage(mediaImage, Orientation.valueOf(frame.getOrientation()).toDegrees());
+      InputImage image = InputImage.fromMediaImage(mediaImage, Orientation.Companion.fromUnionValue(frame.getOrientation()).toDegrees());
 
       if (params != null && params.containsKey("checkInverted")) {
         boolean checkInverted = (Boolean) params.get("checkInverted");
@@ -109,8 +107,8 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
   }
 
   private void createBarcodeInstance(@Nullable Map<String, Object> params) {
-    if (params != null && params.containsKey("types") && params.get("types") instanceof ReadableNativeArray) {
-      ReadableNativeArray rawFormats = (ReadableNativeArray) params.get("types");
+    if (params != null && params.containsKey("types") && params.get("types") instanceof ArrayList) {
+      ArrayList<Double> rawFormats = (ArrayList<Double>) params.get("types");
 
       int formatsBitmap = 0;
       int formatsIndex = 0;
@@ -118,7 +116,7 @@ public class VisionCameraCodeScannerPlugin extends FrameProcessorPlugin {
       int[] formats = new int[formatsSize];
 
       for (int i = 0; i < formatsSize; i++) {
-        int format = rawFormats.getInt(i);
+        int format = rawFormats.get(i).intValue();
         if (barcodeFormats.contains(format)){
           formats[formatsIndex] = format;
           formatsIndex++;
