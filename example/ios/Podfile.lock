@@ -483,8 +483,10 @@ PODS:
     - React-jsi (= 0.72.3)
     - React-logger (= 0.72.3)
     - React-perflogger (= 0.72.3)
+  - RNStaticSafeAreaInsets (2.2.0):
+    - React-Core
   - SocketRocket (0.6.1)
-  - VisionCamera (3.0.0):
+  - VisionCamera (3.1.0):
     - React
     - React-callinvoker
     - React-Core
@@ -537,6 +539,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNStaticSafeAreaInsets (from `../node_modules/react-native-static-safe-area-insets`)
   - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - VisionCameraCodeScanner (from `../..`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -639,6 +642,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNStaticSafeAreaInsets:
+    :path: "../node_modules/react-native-static-safe-area-insets"
   VisionCamera:
     :path: "../node_modules/react-native-vision-camera"
   VisionCameraCodeScanner:
@@ -700,8 +705,9 @@ SPEC CHECKSUMS:
   React-runtimescheduler: efef64702d99b55163089db5b131d11925e973d6
   React-utils: 25a2f8daae645c25db05600fe1878df0b25601e7
   ReactCommon: 35f77a684d8e2b6fc686e61fa4fedda6967ee117
+  RNStaticSafeAreaInsets: 055ddbf5e476321720457cdaeec0ff2ba40ec1b8
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  VisionCamera: 9be9a96959550faba434896a60fc1be843fca5af
+  VisionCamera: 5716d5c3f2e5cbcf0e58e30e91b09b2fbb1f12ef
   VisionCameraCodeScanner: d5db4e917a0ebcb91279a423582b6a67a52dfd89
   Yoga: 8796b55dba14d7004f980b54bcc9833ee45b28ce
 

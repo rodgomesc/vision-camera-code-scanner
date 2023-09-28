@@ -1,0 +1,13 @@
+
+{
+  "extends": "../tsconfig",
+  "compilerOptions": {
+    "paths": {
+      "vision-camera-code-scanner": ["../src/index"]
+    }
+  },
+  "include": [
+    "src",
+    "index.tsx"
+  ]
+}

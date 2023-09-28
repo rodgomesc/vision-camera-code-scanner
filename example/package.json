@@ -11,18 +11,16 @@
   "dependencies": {
     "react": "18.2.0",
     "react-native": "0.72.3",
-    "react-native-vision-camera": "^3.0.0",
+    "react-native-static-safe-area-insets": "^2.2.0",
+    "react-native-vision-camera": "^3.1.0",
     "react-native-worklets-core": "^0.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.9",
-    "@babel/runtime": "^7.22.6",
+    "@babel/core": "^7.22.10",
+    "@babel/runtime": "^7.22.10",
     "babel-plugin-module-resolver": "^5.0.0",
     "metro-react-native-babel-preset": "^0.77.0",
     "string-hash-64": "^1.0.3"
   },
-  "packageManager": "yarn@3.5.0",
-  "resolutions": {
-    "react-native-vision-camera@^3.0.0": "patch:react-native-vision-camera@npm%3A3.0.0#./.yarn/patches/react-native-vision-camera-npm-3.0.0-21b4ab30d7.patch"
-  }
+  "packageManager": "yarn@3.5.0"
 }

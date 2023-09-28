@@ -1,4 +1,4 @@
-import { VisionCameraProxy, Frame } from 'react-native-vision-camera';
+import { VisionCameraProxy, type Frame } from 'react-native-vision-camera';
 
 /**
  * @see https://developers.google.com/android/reference/com/google/mlkit/vision/barcode/Barcode.BarcodeFormat
@@ -295,7 +295,7 @@ export const DefaultCodeScannerOptions = {
 };
 
 const plugin =
-  VisionCameraProxy.getFrameProcessorPlugin<Barcode[]>('scanCodes');
+  VisionCameraProxy.getFrameProcessorPlugin('scanCodes');
 
 /**
  * Scans barcodes in the passed frame with MLKit
@@ -317,7 +317,7 @@ export function scanBarcodes(
   return plugin.call(frame, {
     ...options,
     types,
-  });
+  }) as unknown as Barcode[];
 }
 
 export * from './hook';
