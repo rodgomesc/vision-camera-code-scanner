@@ -96,9 +96,9 @@ android {
     
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.visioncameracodescanner"
+    namespace "com.example.visioncameracodescanner"
     defaultConfig {
-        applicationId "com.visioncameracodescanner"
+        applicationId "com.example.visioncameracodescanner"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

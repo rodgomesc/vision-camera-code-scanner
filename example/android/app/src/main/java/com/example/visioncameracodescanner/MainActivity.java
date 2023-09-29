@@ -1,4 +1,4 @@
-package com.visioncameracodescanner;
+package com.example.visioncameracodescanner;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

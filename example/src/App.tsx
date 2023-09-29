@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
-import { StyleSheet, Text } from 'react-native';
+import { Platform, StyleSheet, Text } from 'react-native';
 import { Camera, useCameraDevice, useCameraFormat } from 'react-native-vision-camera';
 import { BarcodeFormat, useScanBarcodes } from 'vision-camera-code-scanner';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from './Constants'
@@ -20,7 +20,7 @@ export default function App() {
     physicalDevices: ['ultra-wide-angle-camera', 'wide-angle-camera', 'telephoto-camera'],
   });
 
-  const [targetFps, ] = useState(60);
+  const [targetFps, ] = useState(30);
 
   const screenAspectRatio = SCREEN_HEIGHT / SCREEN_WIDTH;
   const format = useCameraFormat(device, [
@@ -56,6 +56,7 @@ export default function App() {
           isActive={true}
           orientation="portrait"
           frameProcessor={frameProcessor}
+          pixelFormat={Platform.OS === "ios" ? "native" : "rgb"}
         />
         {barcodes.map((barcode, idx) => (
           <Text key={idx} style={styles.barcodeTextURL}>
