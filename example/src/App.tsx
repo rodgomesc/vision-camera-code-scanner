@@ -56,7 +56,7 @@ export default function App() {
           isActive={true}
           orientation="portrait"
           frameProcessor={frameProcessor}
-          pixelFormat={Platform.OS === "ios" ? "native" : "rgb"}
+          pixelFormat={Platform.OS === "ios" ? "native" : "yuv"}
         />
         {barcodes.map((barcode, idx) => (
           <Text key={idx} style={styles.barcodeTextURL}>

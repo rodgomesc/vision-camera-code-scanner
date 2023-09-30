@@ -21,7 +21,7 @@ android {
     compileSdkVersion safeExtGet('VisionCameraCodeScanner_compileSdkVersion', 33)
     ndkVersion "21.4.7075529"
     defaultConfig {
-        minSdkVersion safeExtGet('VisionCameraCodeScanner_minSdkVersion', 21)
+        minSdkVersion safeExtGet('VisionCameraCodeScanner_minSdkVersion', 26)
         targetSdkVersion safeExtGet('VisionCameraCodeScanner_targetSdkVersion', 33)
         versionCode 1
         versionName "1.0"

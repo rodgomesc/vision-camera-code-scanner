@@ -486,7 +486,7 @@ PODS:
   - RNStaticSafeAreaInsets (2.2.0):
     - React-Core
   - SocketRocket (0.6.1)
-  - VisionCamera (3.1.0):
+  - VisionCamera (3.2.2):
     - React
     - React-callinvoker
     - React-Core
@@ -707,7 +707,7 @@ SPEC CHECKSUMS:
   ReactCommon: 35f77a684d8e2b6fc686e61fa4fedda6967ee117
   RNStaticSafeAreaInsets: 055ddbf5e476321720457cdaeec0ff2ba40ec1b8
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  VisionCamera: 5716d5c3f2e5cbcf0e58e30e91b09b2fbb1f12ef
+  VisionCamera: cb27c70cea1439e9a946bf2acdc059f8fb1bc68c
   VisionCameraCodeScanner: d5db4e917a0ebcb91279a423582b6a67a52dfd89
   Yoga: 8796b55dba14d7004f980b54bcc9833ee45b28ce
 
