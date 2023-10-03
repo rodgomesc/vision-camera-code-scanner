@@ -1,0 +1,33 @@
+
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "react-native-vision-camera": ["node_modules/react-native-vision-camera/src"],
+      "vision-camera-code-scanner": ["../src/index"]
+    },
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "types": ["node"],
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitUseStrict": false,
+    "noStrictGenericChecks": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext"
+  },
+  "include": [
+    "src",
+    "index.tsx"
+  ]
+}
