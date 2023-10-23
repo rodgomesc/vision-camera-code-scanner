@@ -2,25 +2,28 @@ import MLKitBarcodeScanning
 import MLKitVision
 
 @objc(VisionCameraCodeScanner)
-class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
+public class VisionCameraCodeScanner: FrameProcessorPlugin {
     
-    static var barcodeScanner: BarcodeScanner?
-    static var barcodeFormatOptionSet: BarcodeFormat = []
+    var barcodeScanner: BarcodeScanner?
+    var barcodeFormatOptionSet: BarcodeFormat = []
     
-    @objc
-    public static func callback(_ frame: Frame!, withArgs args: [Any]!) -> Any! {
+    class func newInstance() -> VisionCameraCodeScanner {
+        return VisionCameraCodeScanner()
+    }
+    
+    public override func callback(_ frame: Frame, withArguments arguments: [AnyHashable: Any]?) -> Any? {
         let image = VisionImage(buffer: frame.buffer)
         image.orientation = .up
         
         var barCodeAttributes: [Any] = []
         
         do {
-            try self.createScanner(args)
+            try self.createScanner(arguments)
             var barcodes: [Barcode] = []
             barcodes.append(contentsOf: try barcodeScanner!.results(in: image))
             
-            if let options = args[1] as? [String: Any] {
-                let checkInverted = options["checkInverted"] as? Bool ?? false
+            if let unwrappedArgs = arguments {
+                let checkInverted = unwrappedArgs["checkInverted"] as? Bool ?? false
                 if (checkInverted) {
                     guard let buffer = CMSampleBufferGetImageBuffer(frame.buffer) else {
                         return nil
@@ -46,8 +49,11 @@ class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
         return barCodeAttributes
     }
     
-    static func createScanner(_ args: [Any]!) throws {
-        guard let rawFormats = args[0] as? [Int] else {
+    func createScanner(_ args: [AnyHashable: Any]?) throws {
+        guard let unwrappedArgs = args else {
+            throw BarcodeError.noBarcodeFormatProvided
+        }
+        guard let rawFormats = unwrappedArgs["types"] as? [Int] else {
             throw BarcodeError.noBarcodeFormatProvided
         }
         var formatOptionSet: BarcodeFormat = []
@@ -66,7 +72,7 @@ class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
         }
     }
     
-    static func convertContent(barcode: Barcode) -> Any {
+    func convertContent(barcode: Barcode) -> Any {
         var map: [String: Any] = [:]
         
         map["type"] = barcode.valueType
@@ -99,7 +105,7 @@ class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
         return map
     }
     
-    static func convertBarcode(barcode: Barcode) -> Any {
+    func convertBarcode(barcode: Barcode) -> Any {
         var map: [String: Any] = [:]
         
         map["cornerPoints"] = BarcodeConverter.convertToArray(points: barcode.cornerPoints as? [CGPoint])
@@ -112,7 +118,7 @@ class VisionCameraCodeScanner: NSObject, FrameProcessorPluginBase {
     }
     
     // CIImage Inversion Filter https://stackoverflow.com/a/42987565
-    static func invert(src: CIImage) -> UIImage? {
+    func invert(src: CIImage) -> UIImage? {
         guard let filter = CIFilter(name: "CIColorInvert") else { return nil }
         filter.setDefaults()
         filter.setValue(src, forKey: kCIInputImageKey)

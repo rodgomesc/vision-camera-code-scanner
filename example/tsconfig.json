@@ -1,10 +1,10 @@
+
 {
   "compilerOptions": {
     "baseUrl": "./",
-    "rootDir": ".",
     "paths": {
       "react-native-vision-camera": ["node_modules/react-native-vision-camera/src"],
-      "vision-camera-code-scanner": ["./src/index"]
+      "vision-camera-code-scanner": ["../src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
@@ -26,5 +26,8 @@
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["example"]
+  "include": [
+    "src",
+    "index.tsx"
+  ]
 }

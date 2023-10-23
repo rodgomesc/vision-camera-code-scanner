@@ -9,19 +9,18 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react": "17.0.2",
-    "react-native": "0.66.3",
-    "react-native-reanimated": "2.4.1",
-    "react-native-screens": "3.5.0",
-    "react-native-vision-camera": "^2.9.4"
+    "react": "18.2.0",
+    "react-native": "0.72.3",
+    "react-native-static-safe-area-insets": "^2.2.0",
+    "react-native-vision-camera": "^3.2.2",
+    "react-native-worklets-core": "^0.2.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/runtime": "^7.15.3",
-    "babel-plugin-module-resolver": "^4.1.0",
-    "metro-react-native-babel-preset": "^0.66.2"
+    "@babel/core": "^7.22.10",
+    "@babel/runtime": "^7.22.10",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "metro-react-native-babel-preset": "^0.77.0",
+    "string-hash-64": "^1.0.3"
   },
-  "resolutions": {
-    "**/react-native-reanimated": "2.4.1"
-  }
+  "packageManager": "yarn@3.5.0"
 }

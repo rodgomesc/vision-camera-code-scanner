@@ -5,237 +5,238 @@ import android.graphics.Rect;
 
 import androidx.annotation.NonNull;
 
-import com.facebook.react.bridge.WritableNativeArray;
-import com.facebook.react.bridge.WritableNativeMap;
-import com.google.mlkit.vision.barcode.Barcode;
+import com.google.mlkit.vision.barcode.common.Barcode;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Converter util class used to convert Barcode related variables to either WritableNativeArray or
  * WritableNativeMap
  */
 public class BarcodeConverter {
-  public static WritableNativeArray convertToArray(@NonNull Point[] points) {
-    WritableNativeArray array = new WritableNativeArray();
+  public static List<Object> convertToArray(@NonNull Point[] points) {
+    List<Object> array = new ArrayList<>();
 
     for (Point point: points) {
-      array.pushMap(convertToMap(point));
+      array.add(convertToMap(point));
     }
 
     return array;
   }
 
-  public static WritableNativeArray convertToArray(@NonNull String[] elements) {
-    WritableNativeArray array = new WritableNativeArray();
+  public static List<Object> convertToArray(@NonNull String[] elements) {
+    List<Object> array = new ArrayList<>();
 
     for (String elem: elements) {
-      array.pushString(elem);
+      array.add(elem);
     }
 
     return array;
   }
 
-  public static WritableNativeArray convertStringList(@NonNull List<String> elements) {
-    WritableNativeArray array = new WritableNativeArray();
+  public static List<Object> convertStringList(@NonNull List<String> elements) {
+    List<Object> array = new ArrayList<>();
 
     for (String elem: elements) {
-      array.pushString(elem);
+      array.add(elem);
     }
 
     return array;
   }
 
-  public static WritableNativeArray convertAddressList(@NonNull List<Barcode.Address> addresses) {
-    WritableNativeArray array = new WritableNativeArray();
+  public static List<Object> convertAddressList(@NonNull List<Barcode.Address> addresses) {
+    List<Object> array = new ArrayList<>();
 
     for (Barcode.Address address: addresses) {
-      array.pushMap(convertToMap(address));
+      array.add(convertToMap(address));
     }
 
     return array;
   }
 
-  public static WritableNativeArray convertPhoneList(@NonNull List<Barcode.Phone> phones) {
-    WritableNativeArray array = new WritableNativeArray();
+  public static List<Object> convertPhoneList(@NonNull List<Barcode.Phone> phones) {
+    List<Object> array = new ArrayList<>();
 
     for (Barcode.Phone phone: phones) {
-      array.pushMap(convertToMap(phone));
+      array.add(convertToMap(phone));
     }
 
     return array;
   }
 
-  public static WritableNativeArray convertEmailList(@NonNull List<Barcode.Email> emails) {
-    WritableNativeArray array = new WritableNativeArray();
+  public static List<Object> convertEmailList(@NonNull List<Barcode.Email> emails) {
+    List<Object> array = new ArrayList<>();
 
     for (Barcode.Email email: emails) {
-      array.pushMap(convertToMap(email));
+      array.add(convertToMap(email));
     }
 
     return array;
   }
 
-  public static WritableNativeMap convertToMap(@NonNull Point point) {
-    WritableNativeMap map = new WritableNativeMap();
+  public static Map<String, Object> convertToMap(@NonNull Point point) {
+    Map<String, Object> map = new HashMap<>();
 
-    map.putInt("x", point.x);
-    map.putInt("y", point.y);
-
-    return map;
-  }
-
-  public static WritableNativeMap convertToMap(@NonNull Barcode.Address address) {
-    WritableNativeMap map = new WritableNativeMap();
-
-    map.putArray("addressLines", convertToArray(address.getAddressLines()));
-    map.putInt("type", address.getType());
+    map.put("x", point.x);
+    map.put("y", point.y);
 
     return map;
   }
 
-  public static WritableNativeMap convertToMap(@NonNull Rect rect) {
-    WritableNativeMap map = new WritableNativeMap();
+  public static Map<String, Object> convertToMap(@NonNull Barcode.Address address) {
+    Map<String, Object> map = new HashMap<>();
 
-    map.putInt("bottom", rect.bottom);
-    map.putInt("left", rect.left);
-    map.putInt("right", rect.right);
-    map.putInt("top", rect.top);
+    map.put("addressLines", convertToArray(address.getAddressLines()));
+    map.put("type", address.getType());
 
     return map;
   }
 
-  public static WritableNativeMap convertToMap(@NonNull Barcode.ContactInfo contactInfo) {
-    WritableNativeMap map = new WritableNativeMap();
+  public static Map<String, Object> convertToMap(@NonNull Rect rect) {
+    Map<String, Object> map = new HashMap<>();
 
-    map.putArray("addresses", convertAddressList(contactInfo.getAddresses()));
-    map.putArray("emails", convertEmailList(contactInfo.getEmails()));
-    map.putMap("name", convertToMap(contactInfo.getName()));
-    map.putString("organization", contactInfo.getOrganization());
-    map.putArray("phones", convertPhoneList(contactInfo.getPhones()));
-    map.putString("title", contactInfo.getTitle());
-    map.putArray("urls", convertStringList(contactInfo.getUrls()));
+    map.put("bottom", rect.bottom);
+    map.put("left", rect.left);
+    map.put("right", rect.right);
+    map.put("top", rect.top);
 
     return map;
   }
 
-  public static WritableNativeMap convertToMap(@NonNull Barcode.PersonName name) {
-    WritableNativeMap map = new WritableNativeMap();
+  public static Map<String, Object> convertToMap(@NonNull Barcode.ContactInfo contactInfo) {
+    Map<String, Object> map = new HashMap<>();
 
-    map.putString("first", name.getFirst());
-    map.putString("formattedName", name.getFormattedName());
-    map.putString("last", name.getLast());
-    map.putString("middle", name.getMiddle());
-    map.putString("prefix", name.getPrefix());
-    map.putString("pronunciation", name.getPronunciation());
-    map.putString("suffix", name.getSuffix());
-
-    return map;
-  }
-
-  public static WritableNativeMap convertToMap(@NonNull Barcode.UrlBookmark url) {
-    WritableNativeMap map = new WritableNativeMap();
-
-    map.putString("title", url.getTitle());
-    map.putString("url", url.getUrl());
+    map.put("addresses", convertAddressList(contactInfo.getAddresses()));
+    map.put("emails", convertEmailList(contactInfo.getEmails()));
+    map.put("name", convertToMap(contactInfo.getName()));
+    map.put("organization", contactInfo.getOrganization());
+    map.put("phones", convertPhoneList(contactInfo.getPhones()));
+    map.put("title", contactInfo.getTitle());
+    map.put("urls", convertStringList(contactInfo.getUrls()));
 
     return map;
   }
 
-  public static WritableNativeMap convertToMap(@NonNull Barcode.Email email) {
-    WritableNativeMap map = new WritableNativeMap();
+  public static Map<String, Object> convertToMap(@NonNull Barcode.PersonName name) {
+    Map<String, Object> map = new HashMap<>();
 
-    map.putString("address", email.getAddress());
-    map.putString("body", email.getBody());
-    map.putString("subject", email.getSubject());
-    map.putInt("type", email.getType());
-
-    return map;
-  }
-
-  public static WritableNativeMap convertToMap(@NonNull Barcode.Phone phone) {
-    WritableNativeMap map = new WritableNativeMap();
-
-    map.putString("number", phone.getNumber());
-    map.putInt("type", phone.getType());
+    map.put("first", name.getFirst());
+    map.put("formattedName", name.getFormattedName());
+    map.put("last", name.getLast());
+    map.put("middle", name.getMiddle());
+    map.put("prefix", name.getPrefix());
+    map.put("pronunciation", name.getPronunciation());
+    map.put("suffix", name.getSuffix());
 
     return map;
   }
 
-  public static WritableNativeMap convertToMap(@NonNull Barcode.Sms sms) {
-    WritableNativeMap map = new WritableNativeMap();
+  public static Map<String, Object> convertToMap(@NonNull Barcode.UrlBookmark url) {
+    Map<String, Object> map = new HashMap<>();
 
-    map.putString("message", sms.getMessage());
-    map.putString("phoneNumber", sms.getPhoneNumber());
-
-    return map;
-  }
-
-  public static WritableNativeMap convertToMap(@NonNull Barcode.WiFi wifi) {
-    WritableNativeMap map = new WritableNativeMap();
-
-    map.putInt("encryptionType", wifi.getEncryptionType());
-    map.putString("password", wifi.getPassword());
-    map.putString("ssid", wifi.getSsid());
+    map.put("title", url.getTitle());
+    map.put("url", url.getUrl());
 
     return map;
   }
 
-  public static WritableNativeMap convertToMap(@NonNull Barcode.GeoPoint geoPoint) {
-    WritableNativeMap map = new WritableNativeMap();
+  public static Map<String, Object> convertToMap(@NonNull Barcode.Email email) {
+    Map<String, Object> map = new HashMap<>();
 
-    map.putDouble("lat", geoPoint.getLat());
-    map.putDouble("lng", geoPoint.getLng());
-
-    return map;
-  }
-
-  public static WritableNativeMap convertToMap(@NonNull Barcode.CalendarDateTime calendarDateTime) {
-    WritableNativeMap map = new WritableNativeMap();
-
-    map.putInt("day", calendarDateTime.getDay());
-    map.putInt("hours", calendarDateTime.getHours());
-    map.putInt("minutes", calendarDateTime.getMinutes());
-    map.putInt("month", calendarDateTime.getMonth());
-    map.putString("rawValue", calendarDateTime.getRawValue());
-    map.putInt("year", calendarDateTime.getYear());
-    map.putInt("seconds", calendarDateTime.getSeconds());
-    map.putBoolean("isUtc", calendarDateTime.isUtc());
+    map.put("address", email.getAddress());
+    map.put("body", email.getBody());
+    map.put("subject", email.getSubject());
+    map.put("type", email.getType());
 
     return map;
   }
 
-  public static WritableNativeMap convertToMap(@NonNull Barcode.CalendarEvent calendarEvent) {
-    WritableNativeMap map = new WritableNativeMap();
+  public static Map<String, Object> convertToMap(@NonNull Barcode.Phone phone) {
+    Map<String, Object> map = new HashMap<>();
 
-    map.putString("description", calendarEvent.getDescription());
-    map.putMap("end", convertToMap(calendarEvent.getEnd()));
-    map.putString("location", calendarEvent.getLocation());
-    map.putString("organizer", calendarEvent.getOrganizer());
-    map.putMap("start", convertToMap(calendarEvent.getStart()));
-    map.putString("status", calendarEvent.getStatus());
-    map.putString("summary", calendarEvent.getSummary());
+    map.put("number", phone.getNumber());
+    map.put("type", phone.getType());
 
     return map;
   }
 
-  public static WritableNativeMap convertToMap(@NonNull Barcode.DriverLicense driverLicense) {
-    WritableNativeMap map = new WritableNativeMap();
+  public static Map<String, Object> convertToMap(@NonNull Barcode.Sms sms) {
+    Map<String, Object> map = new HashMap<>();
 
-    map.putString("addressCity", driverLicense.getAddressCity());
-    map.putString("addressState", driverLicense.getAddressState());
-    map.putString("addressStreet", driverLicense.getAddressStreet());
-    map.putString("addressZip", driverLicense.getAddressZip());
-    map.putString("birthDate", driverLicense.getBirthDate());
-    map.putString("documentType", driverLicense.getDocumentType());
-    map.putString("expiryDate", driverLicense.getExpiryDate());
-    map.putString("firstName", driverLicense.getFirstName());
-    map.putString("gender", driverLicense.getGender());
-    map.putString("issueDate", driverLicense.getIssueDate());
-    map.putString("issuingCountry", driverLicense.getIssuingCountry());
-    map.putString("lastName", driverLicense.getLastName());
-    map.putString("licenseNumber", driverLicense.getLicenseNumber());
-    map.putString("middleName", driverLicense.getMiddleName());
+    map.put("message", sms.getMessage());
+    map.put("phoneNumber", sms.getPhoneNumber());
+
+    return map;
+  }
+
+  public static Map<String, Object> convertToMap(@NonNull Barcode.WiFi wifi) {
+    Map<String, Object> map = new HashMap<>();
+
+    map.put("encryptionType", wifi.getEncryptionType());
+    map.put("password", wifi.getPassword());
+    map.put("ssid", wifi.getSsid());
+
+    return map;
+  }
+
+  public static Map<String, Object> convertToMap(@NonNull Barcode.GeoPoint geoPoint) {
+    Map<String, Object> map = new HashMap<>();
+
+    map.put("lat", geoPoint.getLat());
+    map.put("lng", geoPoint.getLng());
+
+    return map;
+  }
+
+  public static Map<String, Object> convertToMap(@NonNull Barcode.CalendarDateTime calendarDateTime) {
+    Map<String, Object> map = new HashMap<>();
+
+    map.put("day", calendarDateTime.getDay());
+    map.put("hours", calendarDateTime.getHours());
+    map.put("minutes", calendarDateTime.getMinutes());
+    map.put("month", calendarDateTime.getMonth());
+    map.put("rawValue", calendarDateTime.getRawValue());
+    map.put("year", calendarDateTime.getYear());
+    map.put("seconds", calendarDateTime.getSeconds());
+    map.put("isUtc", calendarDateTime.isUtc());
+
+    return map;
+  }
+
+  public static Map<String, Object> convertToMap(@NonNull Barcode.CalendarEvent calendarEvent) {
+    Map<String, Object> map = new HashMap<>();
+
+    map.put("description", calendarEvent.getDescription());
+    map.put("end", convertToMap(calendarEvent.getEnd()));
+    map.put("location", calendarEvent.getLocation());
+    map.put("organizer", calendarEvent.getOrganizer());
+    map.put("start", convertToMap(calendarEvent.getStart()));
+    map.put("status", calendarEvent.getStatus());
+    map.put("summary", calendarEvent.getSummary());
+
+    return map;
+  }
+
+  public static Map<String, Object> convertToMap(@NonNull Barcode.DriverLicense driverLicense) {
+    Map<String, Object> map = new HashMap<>();
+
+    map.put("addressCity", driverLicense.getAddressCity());
+    map.put("addressState", driverLicense.getAddressState());
+    map.put("addressStreet", driverLicense.getAddressStreet());
+    map.put("addressZip", driverLicense.getAddressZip());
+    map.put("birthDate", driverLicense.getBirthDate());
+    map.put("documentType", driverLicense.getDocumentType());
+    map.put("expiryDate", driverLicense.getExpiryDate());
+    map.put("firstName", driverLicense.getFirstName());
+    map.put("gender", driverLicense.getGender());
+    map.put("issueDate", driverLicense.getIssueDate());
+    map.put("issuingCountry", driverLicense.getIssuingCountry());
+    map.put("lastName", driverLicense.getLastName());
+    map.put("licenseNumber", driverLicense.getLicenseNumber());
+    map.put("middleName", driverLicense.getMiddleName());
 
     return map;
   }

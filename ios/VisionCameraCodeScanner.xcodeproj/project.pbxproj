@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-
-		5E555C0D2413F4C50049A1A2 /* VisionCameraCodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* VisionCameraCodeScanner.m */; };
-		F4FF95D7245B92E800C19C63 /*  VisionCameraCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  VisionCameraCodeScanner.swift */; };
-
+		214AF74C2A0A098B000437BC /* VisionCameraCodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 214AF74B2A0A098B000437BC /* VisionCameraCodeScanner.m */; };
+		F4FF95D7245B92E800C19C63 /* VisionCameraCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* VisionCameraCodeScanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,11 +25,10 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libVisionCameraCodeScanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVisionCameraCodeScanner.a; sourceTree = BUILT_PRODUCTS_DIR; };
-
-		B3E7B5891CC2AC0600A0062D /* VisionCameraCodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionCameraCodeScanner.m; sourceTree = "<group>"; };
+		214AF74A2A0A094F000437BC /* VisionCameraCodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisionCameraCodeScanner.h; sourceTree = "<group>"; };
+		214AF74B2A0A098B000437BC /* VisionCameraCodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionCameraCodeScanner.m; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* VisionCameraCodeScanner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VisionCameraCodeScanner-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* VisionCameraCodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCameraCodeScanner.swift; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,11 +53,10 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-
+				214AF74B2A0A098B000437BC /* VisionCameraCodeScanner.m */,
+				214AF74A2A0A094F000437BC /* VisionCameraCodeScanner.h */,
 				F4FF95D6245B92E800C19C63 /* VisionCameraCodeScanner.swift */,
-				B3E7B5891CC2AC0600A0062D /* VisionCameraCodeScanner.m */,
 				F4FF95D5245B92E700C19C63 /* VisionCameraCodeScanner-Bridging-Header.h */,
-
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -122,10 +118,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
+				214AF74C2A0A098B000437BC /* VisionCameraCodeScanner.m in Sources */,
 				F4FF95D7245B92E800C19C63 /* VisionCameraCodeScanner.swift in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* VisionCameraCodeScanner.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,11 +232,10 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = VisionCameraCodeScanner;
 				SKIP_INSTALL = YES;
-
 				SWIFT_OBJC_BRIDGING_HEADER = "VisionCameraCodeScanner-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "VisionCameraCodeScanner-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-
 			};
 			name = Debug;
 		};
@@ -259,10 +252,9 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = VisionCameraCodeScanner;
 				SKIP_INSTALL = YES;
-
 				SWIFT_OBJC_BRIDGING_HEADER = "VisionCameraCodeScanner-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "VisionCameraCodeScanner-Swift.h";
 				SWIFT_VERSION = 5.0;
-
 			};
 			name = Release;
 		};
