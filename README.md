@@ -1,6 +1,19 @@
+
+## 🔔 Update: Vision Camera v3
+
+**Good news!** Vision Camera v3 now includes native barcode scanning!
+
+🛑 As a result, maintenance and support for the library with Vision Camera v2 will be discontinued. Please consider upgrading to v3 for the best experience.
+
+Thank you for your support and understanding.
+
+
+
 # vision-camera-code-scanner
 
 VisionCamera Frame Processor Plugin to read barcodes using MLKit Vision Barcode Scanning
+
+
 
 ## Installation
 
