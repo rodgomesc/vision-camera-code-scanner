@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "react-native-reanimated":  "2.4.1",
-    "react-native-vision-camera": "^2.9.4",
+    "react-native-vision-camera": "^2.15.4",
     "@commitlint/config-conventional": "^11.0.0",
     "@react-native-community/eslint-config": "^2.0.0",
     "@release-it/conventional-changelog": "^2.0.0",
