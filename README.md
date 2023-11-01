@@ -29,7 +29,7 @@ import 'react-native-reanimated'
 
 Add this to your `babel.config.js`
 
-```
+```js
 [
   'react-native-reanimated/plugin',
   {
@@ -37,6 +37,22 @@ Add this to your `babel.config.js`
   },
 ]
 ```
+
+## Ios podfile workaround
+
+On ios if you have `use_frameworks` in your podfile, you must use this workaround to compile your project:
+```rb
+pre_install do |installer|
+  installer.pod_targets.each do |pod|
+    if pod.name.eql?('vision-camera-code-scanner') || pod.name.eql?('VisionCamera')
+      def pod.build_type
+        Pod::BuildType.static_library
+      end
+    end
+  end
+end
+```
+Make sure to put this just above `use_react_native!` as advised in https://github.com/rodgomesc/vision-camera-code-scanner/issues/62#issuecomment-1272598027
 
 ## Usage
 
