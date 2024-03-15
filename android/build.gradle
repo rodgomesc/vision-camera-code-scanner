@@ -18,7 +18,7 @@ def safeExtGet(prop, fallback) {
 }
 
 android {
-    compileSdkVersion safeExtGet('VisionCameraCodeScanner_compileSdkVersion', 30)
+    compileSdkVersion safeExtGet('VisionCameraCodeScanner_compileSdkVersion', 31)
     ndkVersion "21.4.7075529"
     defaultConfig {
         minSdkVersion safeExtGet('VisionCameraCodeScanner_minSdkVersion', 21)
